@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demi's Diary || Quiz</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="style.js"></script>
+    <style>
+        header {
+            display: flex;
+            height: 60px;
+        }
+       
+        .containerquiz {
+            width: 990px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-top: 55px;
+        }
+        .imagemLogo {
+            width: 200px;
+        }
+        nav ul, nav li {
+            list-style: none;
+        }
+        nav ul {
+            display: flex;
+        }
+        nav a {
+            padding: 15px;
+            text-decoration: none;
+            color: #000000;
+        }
+        nav .active a, nav a:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .menu {
+            display: flex;
+            align-items: center;
+        }
+        .quiz {
+            margin: 20px;
+        }
+        .btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body id="bodyQuiz">
+    <header>
+        <div class="containerquiz">
+            <div class="logo">
+                <a href="index.html"><img src="../img/logo.png" class="imagemLogo"></a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="cards.html">Cards</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div style="display: flex;" class="divMae">
+        <div class="quiz">
+            <div class="divPai"></div>
+            <div class="jogo iniciar" id="inicio">
+                <div class="titulo">Teste os seus conhecimentos sobre a Demi Lovato!</div>
+                <button onclick="Pergunta()" id="botao_iniciar">JOGAR</button>
+                <div class="pontuacao" id="textinhoFinal"></div>
+                <button style="display:none ;" id="registrarnota" onclick="cadastrarNota()">Ir para a Dashboard</button>
+            </div>
+            <div class="jogo" id="perguntas" style="display:none;">
+                <div class="containerperguntas" id="div_pergunta"></div>
+                <div class="alternatives">
+                    <div class="botao" id="alt1" onclick="verificar(0)"></div>
+                    <div class="botao" id="alt2" onclick="verificar(1)"></div>
+                    <div class="botao" id="alt3" onclick="verificar(2)"></div>
+                    <div class="botao" id="alt4" onclick="verificar(3)"></div>
+                </div>
+            </div>
+        </div>
+
+    </div
+</body>
+</html>

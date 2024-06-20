@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demi'sDiary| Dashboards</title>
+
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="../style.css" />
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- scripts do Chart.js - 2022-1 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2/dist/chartjs-plugin-annotation.min.js"></script>
+
+</head>
+
+<body class="bodydash" onload="obterDadosGrafico(), maximoMinimo(), medianota(), ultimaPont(), ultimaRodada()">
+
+    <div class="side-nav">
+        <img src="../img/logo.png" alt="">
+        <h3 style="margin-bottom:30px;">Olá, <span id="b_usuario">usuário</span>!</h3><br>
+        <a href="quiz.html">Quiz</a>
+        <a class="active" href="dashboard.html">Dashboard</a>
+        <a onclick="limparSessao()">Sair</a>
+    </div>
+    <div class="teste">
+        <div id="dashintrod" class="introducaodash"><br>
+            <h3>Olá,<span id="b_usuario2">usuário</span>!</h3><br>
+            <h3> O último dia em que você realizou o quiz foi: <span style="color: purple;" id="rodada">Ainda Não Fez</span></h3>
+            <h3>A sua última pontuação foi:<span style="color: purple;" id="ultimanota">Ainda Não Fez</span> </h3>
+            <h3> A sua média de acertos é de: <span style="color: purple;" id="medianota">Ainda Não Fez</span></h3><br>
+            <button onclick="ver()">Ver Com Mais Detalhes</button>
+        </div>
+    </div>
+    <div id="quadro" style="display: none;" class="quadrinhos">
+        <div class="totalquestoes">
+            <b> Ultima Dia:</b>
+            <h3><span style="color: purple;" id="rodada2"><br>Ainda Não Fez</span></h3>
+        </div>
+        <div class="maiornota">
+            <b> Maior Nota:</b>
+            <h3><span style="color: purple;" id="maior"><br>Ainda Não Fez</span></h3>
+        </div>
+        <div class="menornota">
+            <b> Última Nota:</b>
+            <h3><span style="color: purple;" id="ultimanota2"><br>Ainda Não Fez</span> </h3>
+        </div>
+        <div class="mediaacertos">
+            <b> Média de Acertos:</b>
+            <h3><span style="color: purple;" id="Media"><br>Ainda Não Fez</span></h3><br>
+        </div>
+    </div>
+
+    <div style="display: none;" id="graficosdiv">
+        <div class="ultimaPontuacao">
+
+            <div class="max"><canvas id="Grafico2"></canvas></div>
+        </div>
+        <div class="historico">
+            <canvas id="meuGrafico"></canvas>
+        </div>
+    </div>
+</div>
+
+<!--
+<div id="direcao" style="display: none;" class="divdirecao">
+    <div class="barra"><canvas id="Grafico3"></canvas></div>
+</div>
+-->
+
+</body>
+</html>
+
+<script>
+    function ver() {
+        document.getElementById('quadro').style.display = "flex";
+        document.getElementById('graficosdiv').style.display = "flex";
+        document.getElementById('dashintrod').style.display = "none";
+        document.getElementById('teste').style.display = "none";
+    }
+
+    document.getElementById('b_usuario').innerHTML = sessionStorage.NOME_USUARIO;
+    document.getElementById('b_usuario2').innerHTML = sessionStorage.NOME_USUARIO;
+    let proximaAtualizacao;
+
+    var fk_usuario = sessionStorage.ID_USUARIO;
+    console.log(`${fk_usuario}`);
+
+
+    // ALTERAÇÃO FEITA DIA 20/06/2024 (CONCLUÍDO 13:30)
+    function obterDadosGrafico() {
+
+        // BUSCA OS DADOS DO BANCO
+    fetch(`/medidas/ultimas/${fk_usuario}`, { cache: 'no-store' })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            var ctx = document.getElementById('meuGrafico').getContext('2d');
+            var acertos = data.map(item => item.nota);
+            
+            // VETOR QUE VAI ARMAZENAR OS DADOS 
+            var labels = [];
+            // LAÇO DE REPETIÇÃO
+            for (let index = 0; index < data.length; index++) {
+                labels.push(`Tentativa ${index + 1}`); // QUANDO O USUÁRIO FAZER O QUIZ, O GRÁFICO VAI ATUALIZAR E ADICIONAR AS TENTATIVAS ( TENTATIVA 1, TENTATIVA2, ETC)
+            }
+
+            var chartData = {
+                labels: labels,
+                datasets: [{
+                    label: 'Acertos',
+                    data: acertos,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var config = {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Histórico de Acertos',
+                            font: {
+                                size: 24
+                            },
+                            color: '#000000'
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    yMin: 5,
+                                    yMax: 5,
+                                    borderColor: 'black',
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            new Chart(ctx, config);
+        })
+        .catch(error => console.error('Falha na captura de acertos', error));
+}
+
+
+    function maximoMinimo() {
+        fetch(`/medidas/maximoMinimo/${fk_usuario}`, { cache: 'no-store' })
+            .then(response => response.json())
+            .then(data => {
+                var MaiorNota = data.map(item => item.MaiorNota);
+                var MenorNota = data.map(item => item.MenorNota);
+                var ctx2 = document.getElementById('Grafico2').getContext('2d');
+                var labels = data.map((_, index) => `Tentativa ${index + 1}`);
+
+                var chartData = {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Maior Nota',
+                            data: MaiorNota,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Menor Nota',
+                            data: MenorNota,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                };
+
+                var config = {
+                    type: 'bar',
+                    data: chartData,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 10
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Maior/Menor Nota',
+                                font: {
+                                    size: 24
+                                },
+                                color: '#000000'
+                            }
+                        }
+                    }
+                };
+                document.getElementById('maior').innerHTML = MaiorNota;
+
+                new Chart(ctx2, config);
+                console.log(data);
+            })
+            .catch(error => console.error('Falha na captura de acertos(max,min)', error));
+    }
+
+    function medianota() {
+        fetch(`/medidas/medianota/${fk_usuario}`, { cache: 'no-store' })
+            .then(response => response.json())
+            .then(data => {
+                var mediaPontuacao = data[0].mediaPontuacao;
+                console.log(data);
+                document.getElementById('medianota').innerHTML = mediaPontuacao;
+                document.getElementById('Media').innerHTML = mediaPontuacao;
+            })
+            .catch(error => console.error('Falha na captura de acertos(media)', error));
+    }
+
+    function ultimaPont() {
+        fetch(`/medidas/ultimaPont/${fk_usuario}`, { cache: 'no-store' })
+            .then(response => response.json())
+            .then(data => {
+                var ultimaNota = data[0].UltimaPontuacao; // Supondo que a API retorna um objeto com a propriedade 'UltimaPontuacao'
+                console.log(data);
+                document.getElementById('ultimanota').innerHTML = ultimaNota;
+                document.getElementById('ultimanota2').innerHTML = ultimaNota;
+            })
+            .catch(error => console.error('Falha na captura de acertos(max,min)', error));
+    }
+
+    function ultimaRodada() {
+        fetch(`/medidas/ultimaRodada/${fk_usuario}`, { cache: 'no-store' })
+            .then(response => response.json())
+            .then(data => {
+                var ultimarodadaquiz = data[0].ultima_rodada; // Supondo que a API retorna um objeto com a propriedade 'ultima_rodada'
+                console.log(data);
+                document.getElementById('rodada').innerHTML = ultimarodadaquiz;
+                document.getElementById('rodada2').innerHTML = ultimarodadaquiz;
+            })
+            .catch(error => console.error('Falha na captura de rodada', error));
+    }
+</script>
+
