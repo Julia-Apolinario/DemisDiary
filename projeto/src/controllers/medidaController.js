@@ -80,15 +80,7 @@ function ultimaRodada (req,res){
     });
 }
 
-function buscarAlbum(req, res) {
 
-    medidaModel.buscarAlbum()
-        .then(result => res.status(200).json(result))
-        .catch(erro => {
-            console.error('Erro', erro.sqlMessage)
-            res.status(500).json(erro.sqlMessage)
-        })
-}
 
 
 module.exports = {
@@ -97,6 +89,5 @@ module.exports = {
     medianota,
     ultimaPont,
     ultimaRodada,
-    buscarAlbum
 
 }

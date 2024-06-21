@@ -1,39 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demi'sDiary| Dashboards</title>
-
     <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="../style.css" />
-    <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-
-    <!-- scripts do Chart.js - 2022-1 -->
+    <link rel="stylesheet" href="../js/sessao.js">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2/dist/chartjs-plugin-annotation.min.js"></script>
-
 </head>
 
-<body class="bodydash" onload="obterDadosGrafico(), maximoMinimo(), medianota(), ultimaPont(), ultimaRodada()">
+<body class="bodydash" onload="obterDadosGrafico(), maximoMinimo(), ultimaPont(),ranking()">
 
     <div class="side-nav">
         <img src="../img/logo.png" alt="">
         <h3 style="margin-bottom:30px;">Olá, <span id="b_usuario">usuário</span>!</h3><br>
         <a href="quiz.html">Quiz</a>
         <a class="active" href="dashboard.html">Dashboard</a>
-        <a onclick="limparSessao()">Sair</a>
+        <a href="../index.html">Sair</a>
     </div>
-    <div class="teste">
+
+    <!-- <div style="display: none;" class="cardzinhos">
         <div id="dashintrod" class="introducaodash"><br>
             <h3>Olá,<span id="b_usuario2">usuário</span>!</h3><br>
             <h3> O último dia em que você realizou o quiz foi: <span style="color: purple;" id="rodada">Ainda Não Fez</span></h3>
@@ -41,10 +28,10 @@
             <h3> A sua média de acertos é de: <span style="color: purple;" id="medianota">Ainda Não Fez</span></h3><br>
             <button onclick="ver()">Ver Com Mais Detalhes</button>
         </div>
-    </div>
-    <div id="quadro" style="display: none;" class="quadrinhos">
-        <div class="totalquestoes">
-            <b> Ultima Dia:</b>
+    </div> -->
+    <div id="quadro"class="quadrinhos">
+        <div class="ultimo">
+            <b> Última Dia:</b>
             <h3><span style="color: purple;" id="rodada2"><br>Ainda Não Fez</span></h3>
         </div>
         <div class="maiornota">
@@ -61,15 +48,26 @@
         </div>
     </div>
 
-    <div style="display: none;" id="graficosdiv">
-        <div class="ultimaPontuacao">
-
+    <div id="graficosdiv">
+        <!-- <div class="ultimaPontuacao">
             <div class="max"><canvas id="Grafico2"></canvas></div>
-        </div>
+        </div> -->
         <div class="historico">
             <canvas id="meuGrafico"></canvas>
         </div>
+        <div class="ranking">
+            <h1>Ranking de Popularidade: </h1>
+            <h3>Os 5 albums mais escolhidos pelos lovatics são:</h3>
+            <div class="lista">
+                <div id="primeiro" class="primeirolugar"></div>
+                <div id="segundo" class="segundolugar"></div>
+                <div id="terceiro" class="terceirolugar"></div>
+                <div id="quarto" class="quartolugar"></div>
+                <div id="quinto" class="quintolugar"></div>
+            </div>
+        </div>
     </div>
+    
 </div>
 
 <!--
@@ -82,15 +80,9 @@
 </html>
 
 <script>
-    function ver() {
-        document.getElementById('quadro').style.display = "flex";
-        document.getElementById('graficosdiv').style.display = "flex";
-        document.getElementById('dashintrod').style.display = "none";
-        document.getElementById('teste').style.display = "none";
-    }
 
     document.getElementById('b_usuario').innerHTML = sessionStorage.NOME_USUARIO;
-    document.getElementById('b_usuario2').innerHTML = sessionStorage.NOME_USUARIO;
+    // document.getElementById('b_usuario2').innerHTML = sessionStorage.NOME_USUARIO;
     let proximaAtualizacao;
 
     var fk_usuario = sessionStorage.ID_USUARIO;
@@ -224,17 +216,17 @@
             .catch(error => console.error('Falha na captura de acertos(max,min)', error));
     }
 
-    function medianota() {
-        fetch(`/medidas/medianota/${fk_usuario}`, { cache: 'no-store' })
-            .then(response => response.json())
-            .then(data => {
-                var mediaPontuacao = data[0].mediaPontuacao;
-                console.log(data);
-                document.getElementById('medianota').innerHTML = mediaPontuacao;
-                document.getElementById('Media').innerHTML = mediaPontuacao;
-            })
-            .catch(error => console.error('Falha na captura de acertos(media)', error));
-    }
+    // function medianota() {
+    //     fetch(`/medidas/medianota/${fk_usuario}`, { cache: 'no-store' })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             var mediaPontuacao = data[0].mediaPontuacao;
+    //             console.log(data);
+    //             document.getElementById('medianota').innerHTML = mediaPontuacao;
+    //             document.getElementById('Media').innerHTML = mediaPontuacao;
+    //         })
+    //         .catch(error => console.error('Falha na captura de acertos(media)', error));
+    // }
 
     function ultimaPont() {
         fetch(`/medidas/ultimaPont/${fk_usuario}`, { cache: 'no-store' })
@@ -242,22 +234,42 @@
             .then(data => {
                 var ultimaNota = data[0].UltimaPontuacao; // Supondo que a API retorna um objeto com a propriedade 'UltimaPontuacao'
                 console.log(data);
-                document.getElementById('ultimanota').innerHTML = ultimaNota;
+                // document.getElementById('ultimanota').innerHTML = ultimaNota;
                 document.getElementById('ultimanota2').innerHTML = ultimaNota;
             })
             .catch(error => console.error('Falha na captura de acertos(max,min)', error));
     }
 
-    function ultimaRodada() {
-        fetch(`/medidas/ultimaRodada/${fk_usuario}`, { cache: 'no-store' })
+    function ranking() {
+        fetch(`/album/ranking`, { cache: 'no-store' })
             .then(response => response.json())
             .then(data => {
-                var ultimarodadaquiz = data[0].ultima_rodada; // Supondo que a API retorna um objeto com a propriedade 'ultima_rodada'
+                var primeirolugar = data[0].nome;
+                var segundolugar = data[1].nome;
+                var terceirolugar = data[2].nome;
+                var quartolugar = data[3].nome;
+                var quintolugar = data[4].nome;
                 console.log(data);
-                document.getElementById('rodada').innerHTML = ultimarodadaquiz;
-                document.getElementById('rodada2').innerHTML = ultimarodadaquiz;
+                // document.getElementById('ultimanota').innerHTML = ultimaNota;
+                document.getElementById('primeiro').innerHTML = primeirolugar;
+                document.getElementById('segundo').innerHTML = segundolugar;
+                document.getElementById('terceiro').innerHTML = terceirolugar;
+                document.getElementById('quarto').innerHTML = quartolugar;
+                document.getElementById('quinto').innerHTML = quintolugar;
             })
-            .catch(error => console.error('Falha na captura de rodada', error));
+            .catch(error => console.error('Falha na captura do ranking', error));
     }
+
+    // function ultimaRodada() {
+    //     fetch(`/medidas/ultimaRodada/${fk_usuario}`, { cache: 'no-store' })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             var ultimarodadaquiz = data[0].ultima_rodada; // Supondo que a API retorna um objeto com a propriedade 'ultima_rodada'
+    //             console.log(data);
+    //             document.getElementById('rodada').innerHTML = ultimarodadaquiz;
+    //             document.getElementById('rodada2').innerHTML = ultimarodadaquiz;
+    //         })
+    //         .catch(error => console.error('Falha na captura de rodada', error));
+    // }
 </script>
 

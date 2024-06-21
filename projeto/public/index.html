@@ -92,7 +92,7 @@
         <div class="divulgacao">
             <div class="container">
                 <div class="card">
-                    <a style="text-decoration: none;" href="cadastro.html">
+                    <a style="text-decoration: none;" href="login.html">
                         <img src="https://static.independent.co.uk/2022/08/09/18/newFile-1.jpg?width=1200&height=1200&fit=crop"
                             alt="Quiz">
                     </a>
@@ -103,7 +103,7 @@
                     </p>
                 </div>
                 <div class="card">
-                    <a style="text-decoration: none;" href="#chamaraqui">
+                    <a style="text-decoration: none;" href="cadastro.html">
                         <img src="https://lastfm.freetls.fastly.net/i/u/ar0/7953e6d4d4b4fc473698d5ee165e73b1.jpg"
                             alt="Top 10!">
                     </a>
@@ -115,7 +115,7 @@
                 </div>
             </div>
         </div>
-        <section>
+        <!-- <section>
             <div style="margin-top: 90px;" class="container">
                 <div class="introducao">
                     <img style="border-radius: 10%; margin-left: 260px;" src="img/fotoHelena.png" width="450px"
@@ -140,7 +140,7 @@
                     </p>
                 </div>
             </div>
-        </section>
+        </section> -->
         <center>
             <section class="calculadora" style="margin-top: 90px;">
                 <h1>Calculadora de Tempo de Audição de Demi Lovato</h1>
@@ -150,9 +150,8 @@
                 <div id="mensagem"></div>
 
             </section>
-
         </center>
-        <div id="chamaraqui" style="margin-top: 90px;" class="grafico">
+        <!-- <div id="chamaraqui" style="margin-top: 90px;" class="grafico">
             <h1>Ranking De Popularidade:</h1>
         </div>
         <div class="subdiv">
@@ -163,7 +162,8 @@
         </div>
         <div class="div_graficopie">
             <canvas class="graficos" id="grafico_album"></canvas>
-        </div>
+        </div> -->
+
     </section>
 
     <!-- INÍCIO PRODUTOS-->
@@ -299,7 +299,7 @@
 
 
         function buscarAlbum() {
-            fetch(`/medidas/buscarAlbum`, { cache: 'no-store' })
+            fetch(`/album/buscarAlbum`, { cache: 'no-store' })
                 .then(response => response.json())
                 .then(data => {
                     var albumData = data.map(album => album.NumeroUsuarios);
@@ -337,8 +337,10 @@
                         }
                     };
 
-                    new Chart(ctx5, config5); // Corrigido para 'Chart'
+                    new Chart(ctx5, config5);
                 })
                 .catch(error => console.error('Falha na captura dos albuns', error));
         }
+
+
     </script>

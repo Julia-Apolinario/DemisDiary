@@ -57,17 +57,6 @@ function ultimaRodada(fk_usuario){
 
 }
 
-function buscarAlbum() {
-    
-    var instrucaoSql = `
-    SELECT COUNT(u.idusuario) AS NumeroUsuarios
-    FROM album p
-    LEFT JOIN usuario u ON p.idalbum = u.fk_album
-    GROUP BY p.idalbum, p.nome;
-    `
-    console.log("Executando album")
-    return database.executar(instrucaoSql);
-}
 
 
 module.exports = {
@@ -76,5 +65,4 @@ module.exports = {
     medianota,
     ultimaPont,
     ultimaRodada,
-    buscarAlbum
 }

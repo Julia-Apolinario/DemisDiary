@@ -23,9 +23,7 @@ router.get("/ultimaRodada/:fk_usuario", function (req, res) {
     medidaController.ultimaRodada(req, res);
 })
 
-router.get("/buscarAlbum", function (req, res) {
-    medidaController.buscarAlbum(req, res);
-});
+
 
 
 
