@@ -7,28 +7,30 @@
     <title>Demi'sDiary| Dashboards</title>
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="../js/sessao.js">
+    <link rel="stylesheet" href="../style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="bodydash" onload="obterDadosGrafico(), maximoMinimo(), ultimaPont(),ranking()">
 
-    <div class="side-nav">
-        <img src="../img/logo.png" alt="">
-        <h3 style="margin-bottom:30px;">Olá, <span id="b_usuario">usuário</span>!</h3><br>
-        <a href="quiz.html">Quiz</a>
-        <a class="active" href="dashboard.html">Dashboard</a>
-        <a href="../index.html">Sair</a>
-    </div>
-
-    <!-- <div style="display: none;" class="cardzinhos">
-        <div id="dashintrod" class="introducaodash"><br>
-            <h3>Olá,<span id="b_usuario2">usuário</span>!</h3><br>
-            <h3> O último dia em que você realizou o quiz foi: <span style="color: purple;" id="rodada">Ainda Não Fez</span></h3>
-            <h3>A sua última pontuação foi:<span style="color: purple;" id="ultimanota">Ainda Não Fez</span> </h3>
-            <h3> A sua média de acertos é de: <span style="color: purple;" id="medianota">Ainda Não Fez</span></h3><br>
-            <button onclick="ver()">Ver Com Mais Detalhes</button>
+   
+    <header class="headercadastro">
+        <div class="containercadastro">
+            <div class="logo">
+                <a href="index.html"><img src="../img/logo.png" class="imagemLogo"></a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li><a href="quiz.html">Quiz</a></li>
+                        <li class="active"><a href="dashboard.html">Dashboars</a></li>
+                        <li><a href="../index.html">Sair</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-    </div> -->
+    </header>
+
     <div id="quadro"class="quadrinhos">
         <div class="ultimo">
             <b> Última Dia:</b>
@@ -55,10 +57,13 @@
         <div class="historico">
             <canvas id="meuGrafico"></canvas>
         </div>
+
+        <!-- AJUSTES FEITOS NO DIA 21/06/2024 (CONCLUÍDO AS 13:30) -->
         <div class="ranking">
             <h1>Ranking de Popularidade: </h1>
             <h3>Os 5 albums mais escolhidos pelos lovatics são:</h3>
             <div class="lista">
+    <!-- OS DADOS QUE VÃO SER PUXADOS DO BANCO VÃO SER COLOCADOS AQUI -->
                 <div id="primeiro" class="primeirolugar"></div>
                 <div id="segundo" class="segundolugar"></div>
                 <div id="terceiro" class="terceirolugar"></div>
@@ -81,7 +86,7 @@
 
 <script>
 
-    document.getElementById('b_usuario').innerHTML = sessionStorage.NOME_USUARIO;
+    // document.getElementById('b_usuario').innerHTML = sessionStorage.NOME_USUARIO;
     // document.getElementById('b_usuario2').innerHTML = sessionStorage.NOME_USUARIO;
     let proximaAtualizacao;
 
@@ -240,17 +245,20 @@
             .catch(error => console.error('Falha na captura de acertos(max,min)', error));
     }
 
+    // AJUSTES FEITOS NO DIA 21/06/2024 (CONCLUÍDO AS 13:30) 
     function ranking() {
         fetch(`/album/ranking`, { cache: 'no-store' })
             .then(response => response.json())
             .then(data => {
+                // OS DADOS QUE ESTÃO SENDO PUXADOS DO BANCO ESTÃO SENDO ARMAZENADOS EM VARIÁVEIS PARA A DEVIDA MANIPULAÇÃO 
                 var primeirolugar = data[0].nome;
                 var segundolugar = data[1].nome;
                 var terceirolugar = data[2].nome;
                 var quartolugar = data[3].nome;
                 var quintolugar = data[4].nome;
                 console.log(data);
-                // document.getElementById('ultimanota').innerHTML = ultimaNota;
+                // DEPOIS DE ARMAZENAR OS DADOS EM ARRAYS, UTILIZEI O 'innerHTML' PARA CONCLUIR A SAÍDA DOS DADOS
+                // COMO FOI UTILIZADO "ORDER BY" NO SELECT, OS DADOS ESTÃO ORGANIZADOS DO MAIS ESCOLHIDO PARA O MENOS ESCOLHIDO
                 document.getElementById('primeiro').innerHTML = primeirolugar;
                 document.getElementById('segundo').innerHTML = segundolugar;
                 document.getElementById('terceiro').innerHTML = terceirolugar;
