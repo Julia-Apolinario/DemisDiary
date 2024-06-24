@@ -1,68 +1,21 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+body{
+  background-image: url(https://wallpapercave.com/wp/wc1702909.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-/* .ultimaPontuacao {
+ .ultimaPontuacao {
   display: flex;
   justify-content: center;
   height: 400px;
   width: 400px;
   margin-left: 10px;
-} */
+} 
 
-canvas {
+ canvas {
   width: 100% !important;
   height: 100% !important;
-}
-/* 
-.side-nav {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 14vw;
-  position: fixed;
-  background-color: #EEF7FF;
-}
-
-.side-nav h3 {
-  font-size: 20px;
-  color: #000000;
-  margin-top: 30px;
-  text-align: center;
-}
-
-.side-nav a {
-  padding: 10px 15px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #000000;
-  display: block;
-  margin: 20px 0px 20px 20px;
-
-}
-
-.side-nav .active {
-  background-color: black;
-  color: antiquewhite;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-}
-
-.side-nav a:hover,
-.active {
-  background-color: black;
-  color: antiquewhite;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-}
-
-.side-nav img {
-  width: 200px;
-  height: 130px;
-} */
+} 
 
 /* .max {
   display: flex;
@@ -73,29 +26,6 @@ canvas {
 
 } */
 
-
-/* .introducaodash {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 220px;
-  width: 520px;
-  border-radius: 30px;
-  margin-top: 280px;
-  background-color: white;
-}
-
-.cardzinhos {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: row;
-  width: 86vw;
-  margin-left: 197px;
-
-} */
-
 .divdirecao {
   display: flex;
   width: 500px;
@@ -103,6 +33,7 @@ canvas {
   margin-top: 550px;
 
 }
+
 .quadrinhos {
   display: flex;
   flex-direction: row;
@@ -117,29 +48,40 @@ canvas {
   justify-content: center;
   flex-direction: column;
   width: 200px;
-  margin-top: 90px;
+  margin-top: 50px;
   border-radius: 20px;
   box-shadow: 5px 5px 5px 5px rgba(0.5, 0.5, 0.5, 0.5);
+  background-color:#EFF8FF;
 }
-
-
-
 
 #graficosdiv {
   display: flex;
-  margin-left: 240px;
   padding: 20px;
   margin-top: 20px;
+  justify-content: space-evenly;
+}
+.geral{
+  border-radius: 35px;
+  display: flex;
+  height: 400px;
+  text-align: center;
+  width: 600px;
+  margin-right: 30px;
+  background-color:#EFF8FF;
+  box-shadow: 5px 5px 5px 5px rgba(0.5, 0.5, 0.5, 0.5);box-shadow: 5px 5px 5px 5px rgba(0.5, 0.5, 0.5, 0.5);
+  flex-direction: column;
 
 }
 
 .historico {
-  border-radius: 40px;
+  border-radius: 35px;
   display: flex;
   justify-content: center;
   height: 400px;
   width: 600px;
   margin-right: 30px;
+  background-color:#EFF8FF;
+  box-shadow: 5px 5px 5px 5px rgba(0.5, 0.5, 0.5, 0.5);box-shadow: 5px 5px 5px 5px rgba(0.5, 0.5, 0.5, 0.5);
 
 }
 
@@ -153,7 +95,8 @@ canvas {
   text-align: center;
   height: 400px;
   width: 600px;
-  
+  background-color:#EFF8FF;
+  box-shadow: 5px 5px 5px 5px rgba(0.5, 0.5, 0.5, 0.5);
 }
 
 .lista div {

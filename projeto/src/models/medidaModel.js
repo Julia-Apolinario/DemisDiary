@@ -34,12 +34,10 @@ FROM pontuacao WHERE fk_usuario = ${fk_usuario}
 function ultimaPont(fk_usuario){
    
     var instrucaoSql = `
-    SELECT nota AS UltimaPontuacao 
-    FROM pontuacao 
-    WHERE data_hora <= CURRENT_TIMESTAMP 
-    AND fk_usuario = ${fk_usuario}
-    ORDER BY data_hora DESC 
-    LIMIT 1;
+    SELECT ROUND(AVG((nota / 10) * 100)) AS PorcentagemAcertos
+    FROM usuario
+    JOIN pontuacao ON fk_usuario = idUsuario
+    WHERE fk_usuario = ${fk_usuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +14,7 @@
 
 <body class="bodydash" onload="obterDadosGrafico(), maximoMinimo(), ultimaPont(),ranking()">
 
-   
+
     <header class="headercadastro">
         <div class="containercadastro">
             <div class="logo">
@@ -31,7 +32,7 @@
         </div>
     </header>
 
-    <div id="quadro"class="quadrinhos">
+    <div id="quadro" class="quadrinhos">
         <div class="ultimo">
             <b> Última Dia:</b>
             <h3><span style="color: purple;" id="rodada2"><br>Ainda Não Fez</span></h3>
@@ -51,11 +52,11 @@
     </div>
 
     <div id="graficosdiv">
-        <!-- <div class="ultimaPontuacao">
-            <div class="max"><canvas id="Grafico2"></canvas></div>
-        </div> -->
-        <div class="historico">
-            <canvas id="meuGrafico"></canvas>
+    <!-- ALTERAÇÃO FEITA DIA 24/06/2024 (CONCLUÍDO AS 12:43) -->
+        <div class="geral">
+            <h3><span id="acertos"><br>Ainda Não Fez</span>%</h3><br>
+           <b><span style="color: purple;" id="div_mensagem"></span></b>
+            <!-- <canvas style="display: none;" id="acertosgerais"></canvas> -->
         </div>
 
         <!-- AJUSTES FEITOS NO DIA 21/06/2024 (CONCLUÍDO AS 13:30) -->
@@ -63,7 +64,7 @@
             <h1>Ranking de Popularidade: </h1>
             <h3>Os 5 albums mais escolhidos pelos lovatics são:</h3>
             <div class="lista">
-    <!-- OS DADOS QUE VÃO SER PUXADOS DO BANCO VÃO SER COLOCADOS AQUI -->
+                <!-- OS DADOS QUE VÃO SER PUXADOS DO BANCO VÃO SER COLOCADOS AQUI -->
                 <div id="primeiro" class="primeirolugar"></div>
                 <div id="segundo" class="segundolugar"></div>
                 <div id="terceiro" class="terceirolugar"></div>
@@ -72,16 +73,26 @@
             </div>
         </div>
     </div>
-    
-</div>
+    <div class="graficos2">
+        <div class="historico">
+            <canvas id="meuGrafico"></canvas>
+        </div>
 
-<!--
+        <!-- <div class="ultimaPontuacao">
+                <div class="max"><canvas id="Grafico2"></canvas> -->
+    </div>
+    </div>
+
+    </div>
+
+    <!--
 <div id="direcao" style="display: none;" class="divdirecao">
     <div class="barra"><canvas id="Grafico3"></canvas></div>
 </div>
 -->
 
 </body>
+
 </html>
 
 <script>
@@ -98,68 +109,68 @@
     function obterDadosGrafico() {
 
         // BUSCA OS DADOS DO BANCO
-    fetch(`/medidas/ultimas/${fk_usuario}`, { cache: 'no-store' })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            var ctx = document.getElementById('meuGrafico').getContext('2d');
-            var acertos = data.map(item => item.nota);
-            
-            // VETOR QUE VAI ARMAZENAR OS DADOS 
-            var labels = [];
-            // LAÇO DE REPETIÇÃO
-            for (let index = 0; index < data.length; index++) {
-                labels.push(`Tentativa ${index + 1}`); // QUANDO O USUÁRIO FAZER O QUIZ, O GRÁFICO VAI ATUALIZAR E ADICIONAR AS TENTATIVAS ( TENTATIVA 1, TENTATIVA2, ETC)
-            }
+        fetch(`/medidas/ultimas/${fk_usuario}`, { cache: 'no-store' })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                var ctx = document.getElementById('meuGrafico').getContext('2d');
+                var acertos = data.map(item => item.nota);
 
-            var chartData = {
-                labels: labels,
-                datasets: [{
-                    label: 'Acertos',
-                    data: acertos,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            };
+                // VETOR QUE VAI ARMAZENAR OS DADOS 
+                var labels = [];
+                // LAÇO DE REPETIÇÃO
+                for (let index = 0; index < data.length; index++) {
+                    labels.push(`Tentativa ${index + 1}`); // QUANDO O USUÁRIO FAZER O QUIZ, O GRÁFICO VAI ATUALIZAR E ADICIONAR AS TENTATIVAS ( TENTATIVA 1, TENTATIVA2, ETC)
+                }
 
-            var config = {
-                type: 'bar',
-                data: chartData,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 10
-                        }
-                    },
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Histórico de Acertos',
-                            font: {
-                                size: 24
-                            },
-                            color: '#000000'
+                var chartData = {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Acertos',
+                        data: acertos,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                };
+
+                var config = {
+                    type: 'bar',
+                    data: chartData,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 10
+                            }
                         },
-                        annotation: {
-                            annotations: {
-                                line1: {
-                                    type: 'line',
-                                    yMin: 5,
-                                    yMax: 5,
-                                    borderColor: 'black',
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Histórico de Acertos',
+                                font: {
+                                    size: 24
+                                },
+                                color: '#000000'
+                            },
+                            annotation: {
+                                annotations: {
+                                    line1: {
+                                        type: 'line',
+                                        yMin: 5,
+                                        yMax: 5,
+                                        borderColor: 'black',
+                                    }
                                 }
                             }
                         }
                     }
-                }
-            };
+                };
 
-            new Chart(ctx, config);
-        })
-        .catch(error => console.error('Falha na captura de acertos', error));
-}
+                new Chart(ctx, config);
+            })
+            .catch(error => console.error('Falha na captura de acertos', error));
+    }
 
 
     function maximoMinimo() {
@@ -233,17 +244,51 @@
     //         .catch(error => console.error('Falha na captura de acertos(media)', error));
     // }
 
+
+    // ALTERAÇÃO FEITA DIA 24/06/2024 (CONCLUÍDO AS 12:43)
     function ultimaPont() {
         fetch(`/medidas/ultimaPont/${fk_usuario}`, { cache: 'no-store' })
             .then(response => response.json())
             .then(data => {
-                var ultimaNota = data[0].UltimaPontuacao; // Supondo que a API retorna um objeto com a propriedade 'UltimaPontuacao'
+                
+                // ENTRANDO NO VETOR PARA PEGAR O DADO ARMAZENADO, COMO SÓ PUXEI UM NO SELECT, A POSIÇÃO É 0.
+                var porcentagemGeral = data[0].PorcentagemAcertos;
                 console.log(data);
-                // document.getElementById('ultimanota').innerHTML = ultimaNota;
-                document.getElementById('ultimanota2').innerHTML = ultimaNota;
+                document.getElementById('acertos').innerHTML = `Porcentagem de acertos: ${porcentagemGeral}`;
+                     
+                // VALIDAÇÃO: coloquei 3 imagens que muda de acordo com a porcentagem de acertos que o usuário tiver, para deixar a interação mais divertida. 
+                     if(porcentagemGeral <50){
+                        div_mensagem.innerHTML +=`Infelizmente você está abaixo da média(50%):( <br><br><br><img src="https://i.gifer.com/4SRh.gif">`;
+                     }else if(porcentagemGeral == 50 ){
+                        div_mensagem.innerHTML +=`você está na média!(50%) <br><br><br><img src="https://media4.giphy.com/media/sBaLkxCgfaoNy/giphy.gif">`;
+                     }else if (porcentagemGeral > 50 && porcentagemGeral < 90){
+                        div_mensagem.innerHTML +=`você está acima da média (50%)<br><br><br><img src="https://todateen.com.br/wp-content/uploads/2014/08/tumblr_lx58mkv6cC1r4kfic.gif"> `;
+                     }else{
+                        div_mensagem.innerHTML +=`WOW!! Você sabe tudo da Demi Lovato!! <br><br><br><img src="https://todateen.com.br/wp-content/uploads/2014/08/tumblr_lx58mkv6cC1r4kfic.gif">`;
+                     }
+                // Dados para o gráfico de pizza
+                // var ctx5 = document.getElementById('acertosgerais').getContext('2d');
+                // var acertosgerais = new Chart(ctx5, {
+                //     type: 'pie',
+                //     data: {
+                //         labels: ['Acertos', 'Erros'],
+                //         datasets: [{
+                //             data: [porcentagemGeral, 100 - porcentagemGeral],
+                //             backgroundColor: ['#36A2EB', '#FF6384']
+                //         }]
+                //     },
+                //     options: {
+                //         responsive: true,
+                //         title: {
+                //             display: true,
+                //             text: 'Distribuição de Acertos e Erros'
+                //         }
+                //     }
+                // });
             })
-            .catch(error => console.error('Falha na captura de acertos(max,min)', error));
+            .catch(error => console.error('Falha na captura de acertos (porcentagem)', error));
     }
+
 
     // AJUSTES FEITOS NO DIA 21/06/2024 (CONCLUÍDO AS 13:30) 
     function ranking() {
@@ -280,4 +325,3 @@
     //         .catch(error => console.error('Falha na captura de rodada', error));
     // }
 </script>
-
