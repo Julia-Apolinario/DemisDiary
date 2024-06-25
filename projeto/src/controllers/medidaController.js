@@ -32,10 +32,10 @@ function maximoMinimo(req, res) {
 }
 
 
-function medianota(req,res){
+function ultimoMes(req,res){
     var {fk_usuario} = req.params
 
-    medidaModel.medianota(fk_usuario).then(function (resultado) {
+    medidaModel.ultimoMes(fk_usuario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -86,7 +86,7 @@ function ultimaRodada (req,res){
 module.exports = {
     buscarUltimasMedidas,
     maximoMinimo,
-    medianota,
+    ultimoMes,
     ultimaPont,
     ultimaRodada,
 

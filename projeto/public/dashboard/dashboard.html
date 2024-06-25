@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body class="bodydash" onload="obterDadosGrafico(), maximoMinimo(), ultimaPont(),ranking()">
+<body class="bodydash" onload="obterDadosGrafico(), maximoMinimo(), ultimaPont(),ranking(),ultimaRodada(),ultimoMes(    )">
 
 
     <header class="headercadastro">
@@ -23,8 +23,8 @@
             <div class="menu">
                 <nav>
                     <ul>
+                        <li class="active"><a href="dashboard.html">Dashboard</a></li>
                         <li><a href="quiz.html">Quiz</a></li>
-                        <li class="active"><a href="dashboard.html">Dashboars</a></li>
                         <li><a href="../index.html">Sair</a></li>
                     </ul>
                 </nav>
@@ -41,9 +41,9 @@
             <b> Maior Nota:</b>
             <h3><span style="color: purple;" id="maior"><br>Ainda Não Fez</span></h3>
         </div>
-        <div class="menornota">
-            <b> Última Nota:</b>
-            <h3><span style="color: purple;" id="ultimanota2"><br>Ainda Não Fez</span> </h3>
+        <div class="AcimaMedia">
+            <b>R+odada p/ mês</b>
+            <h3><span style="color: purple;" id="mes"><br>Ainda Não Fez</span> </h3>
         </div>
         <div class="mediaacertos">
             <b> Média de Acertos:</b>
@@ -78,8 +78,8 @@
             <canvas id="meuGrafico"></canvas>
         </div>
 
-        <!-- <div class="ultimaPontuacao">
-                <div class="max"><canvas id="Grafico2"></canvas> -->
+         <div class="ultimaPontuacao">
+                <div class="max"><canvas id="Grafico2"></canvas> 
     </div>
     </div>
 
@@ -172,77 +172,96 @@
             .catch(error => console.error('Falha na captura de acertos', error));
     }
 
-
+// ALTERAÇÃO FEITA DIA 24/06/2024 (CONCLUÍDO 20:40)
     function maximoMinimo() {
-        fetch(`/medidas/maximoMinimo/${fk_usuario}`, { cache: 'no-store' })
-            .then(response => response.json())
-            .then(data => {
-                var MaiorNota = data.map(item => item.MaiorNota);
-                var MenorNota = data.map(item => item.MenorNota);
-                var ctx2 = document.getElementById('Grafico2').getContext('2d');
-                var labels = data.map((_, index) => `Tentativa ${index + 1}`);
+    fetch(`/medidas/maximoMinimo/${fk_usuario}`, { cache: 'no-store' })
+        .then(response => response.json())
+        .then(data => {
 
-                var chartData = {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Maior Nota',
-                            data: MaiorNota,
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Menor Nota',
-                            data: MenorNota,
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            borderWidth: 1
+            // VETOR QUE VAI ARMAZENAR OS DADOS
+            var MaiorNota = [];
+            var MenorNota = [];
+            var labels = [];
+
+            for (let i = 0; i < data.length; i++) {
+                // ADICIONANDO OS DADOS NOS VETORES
+                MaiorNota.push(data[i].MaiorNota);
+                MenorNota.push(data[i].MenorNota);
+                labels.push(`Maior/Menor nota ${i + 1}`);
+            }
+
+
+            // CONFIGURANDO O GRÁFICO
+            var ctx2 = document.getElementById('Grafico2').getContext('2d');
+
+            var chartData = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Maior Nota',
+                        data: MaiorNota,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Menor Nota',
+                        data: MenorNota,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+
+            var config = {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
                         }
-                    ]
-                };
-
-                var config = {
-                    type: 'bar',
-                    data: chartData,
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                max: 10
-                            }
-                        },
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Maior/Menor Nota',
-                                font: {
-                                    size: 24
-                                },
-                                color: '#000000'
-                            }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Maior/Menor Nota',
+                            font: {
+                                size: 24
+                            },
+                            color: '#000000'
                         }
                     }
-                };
-                document.getElementById('maior').innerHTML = MaiorNota;
+                }
+            };
 
-                new Chart(ctx2, config);
+            // ADICIONANDO O TEXTO NO CARD COM O ID 'maior'
+            document.getElementById('maior').innerHTML = MaiorNota;
+
+            new Chart(ctx2, config);
+            console.log(data);
+        })
+        .catch(error => console.error('Falha na captura de acertos(max,min)', error));
+}
+
+// ALTERAÇÃO FEITA DIA 24/06/2024 (CONCLUÍDO 21:28)
+    function ultimoMes() {
+        fetch(`/medidas/ultimoMes/${fk_usuario}`, { cache: 'no-store' })
+            .then(response => response.json())
+            .then(data => {
+                var TotalPontuacao = data[0].total;
                 console.log(data);
+                document.getElementById('mes').innerHTML = TotalPontuacao;
             })
-            .catch(error => console.error('Falha na captura de acertos(max,min)', error));
+            .catch(error => console.error('Falha na captura de acertos(media)', error));
+// .then(data => { ... }) é onde os dados da resposta JSON são processados.
+// data é o objeto JavaScript resultante da conversão do JSON.
+// var TotalPontuacao = data[0].total; extrai o valor da propriedade total do primeiro item (data[0]) do array de dados retornado.
+// console.log(data); imprime os dados retornados no console para fins de depuração.
+// document.getElementById('mes').innerHTML = TotalPontuacao; atualiza o conteúdo do elemento HTML com ID mes com o valor de TotalPontuacao.
     }
-
-    // function medianota() {
-    //     fetch(`/medidas/medianota/${fk_usuario}`, { cache: 'no-store' })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             var mediaPontuacao = data[0].mediaPontuacao;
-    //             console.log(data);
-    //             document.getElementById('medianota').innerHTML = mediaPontuacao;
-    //             document.getElementById('Media').innerHTML = mediaPontuacao;
-    //         })
-    //         .catch(error => console.error('Falha na captura de acertos(media)', error));
-    // }
 
 
     // ALTERAÇÃO FEITA DIA 24/06/2024 (CONCLUÍDO AS 12:43)
@@ -313,15 +332,14 @@
             .catch(error => console.error('Falha na captura do ranking', error));
     }
 
-    // function ultimaRodada() {
-    //     fetch(`/medidas/ultimaRodada/${fk_usuario}`, { cache: 'no-store' })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             var ultimarodadaquiz = data[0].ultima_rodada; // Supondo que a API retorna um objeto com a propriedade 'ultima_rodada'
-    //             console.log(data);
-    //             document.getElementById('rodada').innerHTML = ultimarodadaquiz;
-    //             document.getElementById('rodada2').innerHTML = ultimarodadaquiz;
-    //         })
-    //         .catch(error => console.error('Falha na captura de rodada', error));
-    // }
+    function ultimaRodada() {
+        fetch(`/medidas/ultimaRodada/${fk_usuario}`, { cache: 'no-store' })
+            .then(response => response.json())
+            .then(data => {
+                var ultimarodadaquiz = data[0].ultima_rodada; // Supondo que a API retorna um objeto com a propriedade 'ultima_rodada'
+                console.log(data);
+                document.getElementById('rodada2').innerHTML = ultimarodadaquiz;
+            })
+            .catch(error => console.error('Falha na captura de rodada', error));
+    }
 </script>

@@ -11,8 +11,8 @@ router.get("/maximoMinimo/:fk_usuario", function (req, res) {
     medidaController.maximoMinimo(req, res);
 })
 
-router.get("/medianota/:fk_usuario", function (req, res) {
-    medidaController.medianota(req, res);
+router.get("/ultimoMes/:fk_usuario", function (req, res) {
+    medidaController.ultimoMes(req, res);
 })
 
 router.get("/ultimaPont/:fk_usuario", function (req, res) {

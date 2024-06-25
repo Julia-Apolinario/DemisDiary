@@ -24,15 +24,13 @@ function buscarAlbum() {
 function ranking() {
     
   var instrucaoSql = `
-  SELECT 
-    a.nome,
-    COUNT(u.idUsuario) AS NumeroUsuarios
+SELECT 
+    album.nome,
+    (SELECT COUNT(usuario.idUsuario) 
+     FROM usuario 
+     WHERE usuario.fk_album = album.idAlbum) AS NumeroUsuarios
 FROM 
-    album a
-LEFT JOIN 
-    usuario u ON a.idAlbum = u.fk_album
-GROUP BY 
-    a.idAlbum, a.nome
+    album
 ORDER BY 
     NumeroUsuarios DESC;
   `

@@ -21,10 +21,13 @@ function maximoMinimo(fk_usuario) {
 }
 
 
-function medianota(fk_usuario){
+function ultimoMes(fk_usuario){
     var instrucaoSql = `
-    SELECT ROUND(AVG(nota), 2) AS mediaPontuacao
-FROM pontuacao WHERE fk_usuario = ${fk_usuario}
+   SELECT MONTH(data_hora) AS mes,
+       COUNT(idPontuacao) AS total
+FROM pontuacao
+WHERE fk_usuario = ${fk_usuario}
+GROUP BY MONTH(data_hora);
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -60,7 +63,7 @@ function ultimaRodada(fk_usuario){
 module.exports = {
     buscarUltimasMedidas,
     maximoMinimo,
-    medianota,
+    ultimoMes,
     ultimaPont,
     ultimaRodada,
 }
