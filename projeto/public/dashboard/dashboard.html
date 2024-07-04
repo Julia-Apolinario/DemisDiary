@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body class="bodydash" onload="obterDadosGrafico(), maximoMinimo(), ultimaPont(),ranking(),ultimaRodada(),ultimoMes(    )">
+<body class="bodydash" onload="obterDadosGrafico(), maximoMinimo(), ultimaPont(),ranking(),ultimaRodada(),ultimoMes()">
 
 
     <header class="headercadastro">
@@ -105,7 +105,8 @@
     console.log(`${fk_usuario}`);
 
 
-    // ALTERAÇÃO FEITA DIA 20/06/2024 (CONCLUÍDO 13:30)
+    // ALTERAÇÃO FEITA DIA 20/06/2024 (CONCLUÍDO 13:30) 
+    // Já mandei
     function obterDadosGrafico() {
 
         // BUSCA OS DADOS DO BANCO
@@ -173,6 +174,7 @@
     }
 
 // ALTERAÇÃO FEITA DIA 24/06/2024 (CONCLUÍDO 20:40)
+// já mandei
     function maximoMinimo() {
     fetch(`/medidas/maximoMinimo/${fk_usuario}`, { cache: 'no-store' })
         .then(response => response.json())
@@ -247,19 +249,26 @@
 }
 
 // ALTERAÇÃO FEITA DIA 24/06/2024 (CONCLUÍDO 21:28)
-    function ultimoMes() {
-        fetch(`/medidas/ultimoMes/${fk_usuario}`, { cache: 'no-store' })
-            .then(response => response.json())
-            .then(data => {
-                var TotalPontuacao = data[0].total;
+function ultimoMes() {
+    fetch(`/medidas/ultimoMes/${fk_usuario}`, { cache: 'no-store' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.length > 0) {
+                var TotalPontuacao = data[data.length - 1].total; // Acessa o último elemento do vetor
                 console.log(data);
                 document.getElementById('mes').innerHTML = TotalPontuacao;
-            })
-            .catch(error => console.error('Falha na captura de acertos(media)', error));
-    }
+            } else {
+                console.log('Nenhum dado encontrado');
+                document.getElementById('mes').innerHTML = 'Sem dados';
+            }
+        })
+        .catch(error => console.error('Falha na captura de acertos(mes)', error));
+}
+
 
 
     // ALTERAÇÃO FEITA DIA 24/06/2024 (CONCLUÍDO AS 12:43)
+    // já mandei
     function ultimaPont() {
         fetch(`/medidas/ultimaPont/${fk_usuario}`, { cache: 'no-store' })
             .then(response => response.json())
@@ -280,52 +289,39 @@
                      }else{
                         div_mensagem.innerHTML +=`WOW!! Você sabe tudo da Demi Lovato!! <br><br><br><img src="https://todateen.com.br/wp-content/uploads/2014/08/tumblr_lx58mkv6cC1r4kfic.gif">`;
                      }
-                // Dados para o gráfico de pizza
-                // var ctx5 = document.getElementById('acertosgerais').getContext('2d');
-                // var acertosgerais = new Chart(ctx5, {
-                //     type: 'pie',
-                //     data: {
-                //         labels: ['Acertos', 'Erros'],
-                //         datasets: [{
-                //             data: [porcentagemGeral, 100 - porcentagemGeral],
-                //             backgroundColor: ['#36A2EB', '#FF6384']
-                //         }]
-                //     },
-                //     options: {
-                //         responsive: true,
-                //         title: {
-                //             display: true,
-                //             text: 'Distribuição de Acertos e Erros'
-                //         }
-                //     }
-                // });
             })
             .catch(error => console.error('Falha na captura de acertos (porcentagem)', error));
     }
 
 
-    // AJUSTES FEITOS NO DIA 21/06/2024 (CONCLUÍDO AS 13:30) 
-    function ranking() {
-        fetch(`/album/ranking`, { cache: 'no-store' })
-            .then(response => response.json())
-            .then(data => {
-                // OS DADOS QUE ESTÃO SENDO PUXADOS DO BANCO ESTÃO SENDO ARMAZENADOS EM VARIÁVEIS PARA A DEVIDA MANIPULAÇÃO 
-                var primeirolugar = data[0].nome;
-                var segundolugar = data[1].nome;
-                var terceirolugar = data[2].nome;
-                var quartolugar = data[3].nome;
-                var quintolugar = data[4].nome;
-                console.log(data);
-                // DEPOIS DE ARMAZENAR OS DADOS EM ARRAYS, UTILIZEI O 'innerHTML' PARA CONCLUIR A SAÍDA DOS DADOS
-                // COMO FOI UTILIZADO "ORDER BY" NO SELECT, OS DADOS ESTÃO ORGANIZADOS DO MAIS ESCOLHIDO PARA O MENOS ESCOLHIDO
-                document.getElementById('primeiro').innerHTML = primeirolugar;
-                document.getElementById('segundo').innerHTML = segundolugar;
-                document.getElementById('terceiro').innerHTML = terceirolugar;
-                document.getElementById('quarto').innerHTML = quartolugar;
-                document.getElementById('quinto').innerHTML = quintolugar;
-            })
-            .catch(error => console.error('Falha na captura do ranking', error));
-    }
+   // AJUSTES FEITOS NO DIA 21/06/2024 (CONCLUÍDO AS 13:30) revisado dia 04/07/2024
+//    ja mandei
+function ranking() {
+    fetch(`/album/ranking`, { cache: 'no-store' })
+        .then(response => response.json())
+        .then(data => {
+            // Inicializar um array
+            var lugares = [];
+            
+            // Adicionar os dados no array usando push
+            lugares.push(data[0].nome);
+            lugares.push(data[1].nome);
+            lugares.push(data[2].nome);
+            lugares.push(data[3].nome);
+            lugares.push(data[4].nome);
+            
+            console.log(data);
+            
+            // Atualizar o HTML usando o array
+            document.getElementById('primeiro').innerHTML = lugares[0];
+            document.getElementById('segundo').innerHTML = lugares[1];
+            document.getElementById('terceiro').innerHTML = lugares[2];
+            document.getElementById('quarto').innerHTML = lugares[3];
+            document.getElementById('quinto').innerHTML = lugares[4];
+        })
+        .catch(error => console.error('Falha na captura do ranking', error));
+}
+
 
     function ultimaRodada() {
         fetch(`/medidas/ultimaRodada/${fk_usuario}`, { cache: 'no-store' })

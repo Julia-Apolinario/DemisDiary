@@ -21,7 +21,7 @@ function maximoMinimo(fk_usuario) {
 }
 
 
-function ultimoMes(fk_usuario){
+function ultimoMes(fk_usuario) {
     var instrucaoSql = `
    SELECT MONTH(data_hora) AS mes,
        COUNT(idPontuacao) AS total
@@ -34,8 +34,8 @@ GROUP BY MONTH(data_hora);
 
 }
 
-function ultimaPont(fk_usuario){
-   
+function ultimaPont(fk_usuario) {
+
     var instrucaoSql = `
     SELECT ROUND(AVG((nota / 10) * 100)) AS PorcentagemAcertos
     FROM usuario
@@ -47,8 +47,8 @@ function ultimaPont(fk_usuario){
 
 }
 
-function ultimaRodada(fk_usuario){
-   
+function ultimaRodada(fk_usuario) {
+
     var instrucaoSql = `
     SELECT data_hora,DATE_FORMAT(data_hora, '%d/%m/%y') AS ultima_rodada FROM pontuacao WHERE fk_usuario = ${fk_usuario} ORDER BY data_hora DESC
     LIMIT 1;

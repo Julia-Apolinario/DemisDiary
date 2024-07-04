@@ -10,7 +10,7 @@
     <title>Demi's Diary || Página Inicial</title>
 </head>
 
-<body onload="buscarAlbum()">
+<body>
     <!-- INÍCIO HEADER-->
     <header class="headerindex">
         <div class="logo">
@@ -257,6 +257,7 @@
     <script>
 
 // AJUSTES FEITOS NO DIA 20/06/2024 (CONCLUÍDO AS 13:10)
+// já mandei
         function calcularTempo() {
             var duracaoMusicaSegundos = 3.5 * 60; // Duração da música em segundos (3.5 minutos)
             var numeroMusicas = Number(input_musica.value); // Obtém o número de músicas do input
@@ -283,7 +284,7 @@
                         mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música.Ou seja Mais que duas horas!! <br>
                         <img style="height: 300px; width:400px;"  src="https://i.pinimg.com/236x/68/67/82/68678220bfa2d118e031a162ffbdadfb.jpg">
                         `;
-                    }else if( horas > 3){
+                    }else if( horas >= 3){
                         mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música.Ou seja Mais que <b>3</b> horas!! <br>
                         <img style="height: 300px; width:400px;"  src="https://pbs.twimg.com/media/DkRsFjHXcAAlU8c.jpg">
                         `;
@@ -298,49 +299,49 @@
         }
 
 
-        function buscarAlbum() {
-            fetch(`/album/buscarAlbum`, { cache: 'no-store' })
-                .then(response => response.json())
-                .then(data => {
-                    var albumData = data.map(album => album.NumeroUsuarios);
-                    var ctx5 = document.getElementById('grafico_album').getContext('2d');
-                    var labelS = ['Álbuns'];
-                    const chartData = {
-                        labels: [
-                            'DontForget',
-                            'HereWeGoAgain',
-                            'Unbroken',
-                            'Demi',
-                            'Confident',
-                            'TellMeYouLoveMe',
-                            'DancingWithTheDevil',
-                            'HolyFvck',
-                            'Revamped'
-                        ],
-                        datasets: [
-                            {
-                                label: [''],
-                                data: albumData,
-                                backgroundColor: ['#C7B7A3', '#fff5c6', '#ffe2c6', '#ffcfbc', '#ffb3d6', '#ffc6f8', '#edd0fd', '#c0c0fd', '#b8d8fd', '#33FFB5'],
-                            }
-                        ],
+        // function buscarAlbum() {
+        //     fetch(`/album/buscarAlbum`, { cache: 'no-store' })
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             var albumData = data.map(album => album.NumeroUsuarios);
+        //             var ctx5 = document.getElementById('grafico_album').getContext('2d');
+        //             var labelS = ['Álbuns'];
+        //             const chartData = {
+        //                 labels: [
+        //                     'DontForget',
+        //                     'HereWeGoAgain',
+        //                     'Unbroken',
+        //                     'Demi',
+        //                     'Confident',
+        //                     'TellMeYouLoveMe',
+        //                     'DancingWithTheDevil',
+        //                     'HolyFvck',
+        //                     'Revamped'
+        //                 ],
+        //                 datasets: [
+        //                     {
+        //                         label: [''],
+        //                         data: albumData,
+        //                         backgroundColor: ['#C7B7A3', '#fff5c6', '#ffe2c6', '#ffcfbc', '#ffb3d6', '#ffc6f8', '#edd0fd', '#c0c0fd', '#b8d8fd', '#33FFB5'],
+        //                     }
+        //                 ],
 
 
-                    };
+        //             };
 
-                    var config5 = {
-                        type: 'bar',
-                        data: chartData,
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false
-                        }
-                    };
+        //             var config5 = {
+        //                 type: 'bar',
+        //                 data: chartData,
+        //                 options: {
+        //                     responsive: true,
+        //                     maintainAspectRatio: false
+        //                 }
+        //             };
 
-                    new Chart(ctx5, config5);
-                })
-                .catch(error => console.error('Falha na captura dos albuns', error));
-        }
+        //             new Chart(ctx5, config5);
+        //         })
+        //         .catch(error => console.error('Falha na captura dos albuns', error));
+        // }
 
 
     </script>
