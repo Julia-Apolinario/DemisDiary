@@ -54,7 +54,7 @@
     <div id="graficosdiv">
     <!-- ALTERAÇÃO FEITA DIA 24/06/2024 (CONCLUÍDO AS 12:43) -->
         <div class="geral">
-            <h3><span id="acertos"><br>Ainda Não Fez</span>%</h3><br>
+            <h3><span id="acertos"><br></span></h3><br>
            <b><span style="color: purple;" id="div_mensagem"></span></b>
             <!-- <canvas style="display: none;" id="acertosgerais"></canvas> -->
         </div>
@@ -277,7 +277,7 @@ function ultimoMes() {
                 // ENTRANDO NO VETOR PARA PEGAR O DADO ARMAZENADO, COMO SÓ PUXEI UM NO SELECT, A POSIÇÃO É 0.
                 var porcentagemGeral = data[0].PorcentagemAcertos;
                 console.log(data);
-                document.getElementById('acertos').innerHTML = `Porcentagem de acertos: ${porcentagemGeral}`;
+                document.getElementById('acertos').innerHTML = `Porcentagem de acertos: ${porcentagemGeral}%`;
                      
                 // VALIDAÇÃO: coloquei 3 imagens que muda de acordo com a porcentagem de acertos que o usuário tiver, para deixar a interação mais divertida. 
                      if(porcentagemGeral <50){
@@ -286,8 +286,11 @@ function ultimoMes() {
                         div_mensagem.innerHTML +=`você está na média!(50%) <br><br><br><img src="https://media4.giphy.com/media/sBaLkxCgfaoNy/giphy.gif">`;
                      }else if (porcentagemGeral > 50 && porcentagemGeral < 90){
                         div_mensagem.innerHTML +=`você está acima da média (50%)<br><br><br><img src="https://todateen.com.br/wp-content/uploads/2014/08/tumblr_lx58mkv6cC1r4kfic.gif"> `;
-                     }else{
+                     }else if(porcentagemGeral > 90){
                         div_mensagem.innerHTML +=`WOW!! Você sabe tudo da Demi Lovato!! <br><br><br><img src="https://todateen.com.br/wp-content/uploads/2014/08/tumblr_lx58mkv6cC1r4kfic.gif">`;
+                     }else{
+                        document.getElementById('acertos').style.display ="none";
+                        div_mensagem.innerHTML +=` ${porcentagemGeral} :( <br><br><br><img src="https://i.gifer.com/4SRh.gif">`;
                      }
             })
             .catch(error => console.error('Falha na captura de acertos (porcentagem)', error));

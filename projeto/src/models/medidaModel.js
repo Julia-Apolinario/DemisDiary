@@ -37,10 +37,10 @@ GROUP BY MONTH(data_hora);
 function ultimaPont(fk_usuario) {
 
     var instrucaoSql = `
-    SELECT ROUND(AVG((nota / 10) * 100)) AS PorcentagemAcertos
+    SELECT IFNULL(ROUND(AVG((nota / 10) * 100)), 'ainda não fez') AS PorcentagemAcertos
     FROM usuario
     JOIN pontuacao ON fk_usuario = idUsuario
-    WHERE fk_usuario = ${fk_usuario};
+    WHERE fk_usuario = 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

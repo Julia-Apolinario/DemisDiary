@@ -148,10 +148,38 @@ button{
     }
 
     .calculadora{
-    
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
         height: 450px;
         width: 900px;
-        border: 1px solid black;
+        border: 3px solid black;
+        border-radius: 40px;
+    }
+
+    .tituloanimado {
+        font-family: monospace;
+        border-right: 4px solid;
+        white-space: nowrap;
+        width: 47ch;
+        overflow: hidden;
+        animation: animaTexto 2s steps(46), animaMarcador 0.5s linear infinite;
+    }
+    
+    @keyframes animaMarcador {
+        50% {
+            border-right: transparent;
+        }
+    }
+    
+    @keyframes animaTexto {
+        0% {
+            width: 0;
+        }
+        100% {
+            width: 47ch;
+        }
     }
     
 /* FIM CSS CALCULADORA */
