@@ -143,13 +143,18 @@
         </section> -->
         <center>
             <section class="calculadora" style="margin-top: 90px;">
-                <h1 class="tituloanimado">Calculadora de Tempo de Audição de Demi Lovato</h1>
-                <p>Informe quantas músicas da Demi Lovato você ouviu:</p>
-                <input type="number" id="input_musica">
+                <div id="primeira">
+                <h1 class="tituloanimado">Calculadora de Tempo de Audição de Demi Lovato</h1> <br><br><br><br>
+                <p>Informe quantas músicas da Demi Lovato você ouviu:</p><br><br>
+                <input type="number" id="input_musica"><br><br>
                 <button onclick="calcularTempo()">Calcular</button>
+                
+            </div>
+            
+            <div style="display: none;" id="segunda">
                 <div id="mensagem"></div>
-                <button style="display: none;" onclick="voltar()">Voltar</button>
-
+                <button  onclick="voltar()">Voltar</button>
+            </div>
             </section>
         </center>
         <!-- <div id="chamaraqui" style="margin-top: 90px;" class="grafico">
@@ -258,8 +263,11 @@
     <script>
 
 // AJUSTES FEITOS NO DIA 20/06/2024 (CONCLUÍDO AS 13:10)
-// já mandei
+// REAJUSTES FEITOS DIA 12/07/2024 CONCLUÍDO AS 16:56
         function calcularTempo() {
+            document.getElementById('segunda').style.display = 'flex';
+            document.getElementById('primeira').style.display = 'none';
+
             var duracaoMusicaSegundos = 3.5 * 60; // Duração da música em segundos (3.5 minutos)
             var numeroMusicas = Number(input_musica.value); // Obtém o número de músicas do input
             var tempoTotalSegundos = numeroMusicas * duracaoMusicaSegundos; // Tempo total em segundos
@@ -277,26 +285,30 @@
 
                     if (horas >= 1 && horas < 2) {
 
-                        mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música! Ou seja, mais que uma hora!! <br>
-                         <img style="height: 300px; width:400px;" src="https://ofuxico.com.br/img/upload/noticias/2012/12/24/157742_36.jpg">`;
+                        mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música! Ou seja, mais que uma hora!! <br><br><br>
+                         <img style="height: 300px; width:400px;" src="https://ofuxico.com.br/img/upload/noticias/2012/12/24/157742_36.jpg"><br><br>`;
 
                     } else if (horas >= 2 && horas < 3) {
                        
-                        mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música.Ou seja Mais que duas horas!! <br>
-                        <img style="height: 300px; width:400px;"  src="https://i.pinimg.com/236x/68/67/82/68678220bfa2d118e031a162ffbdadfb.jpg">
+                        mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música.Ou seja Mais que duas horas!! <br><br><br>
+                        <img style="height: 300px; width:400px;"  src="https://i.pinimg.com/236x/68/67/82/68678220bfa2d118e031a162ffbdadfb.jpg"><br><br>
                         `;
                     }else if( horas >= 3){
-                        mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música.Ou seja Mais que <b>3</b> horas!! <br>
-                        <img style="height: 300px; width:400px;"  src="https://pbs.twimg.com/media/DkRsFjHXcAAlU8c.jpg">
+                        mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música.Ou seja Mais que <b>3</b> horas!! <br><br><br>
+                        <img style="height: 300px; width:400px;"  src="https://pbs.twimg.com/media/DkRsFjHXcAAlU8c.jpg"><br><br>
                         `;
                     }
                 } else {
-                    mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música.Ou seja menos que 1 hora!! <br>
-                        <img style="height: 300px; width:400px;"  src="https://i.pinimg.com/originals/44/62/34/44623405ec20b923d561fde8b8192682.jpg">
+                    mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música.Ou seja menos que 1 hora!! <br><br><br>
+                        <img style="height: 300px; width:400px;"  src="https://i.pinimg.com/originals/44/62/34/44623405ec20b923d561fde8b8192682.jpg"><br><br>
                         `;
                 }
 
             }
+        }
+        function voltar(){
+            document.getElementById('segunda').style.display = 'none';
+            document.getElementById('primeira').style.display = 'block';
         }
 
 

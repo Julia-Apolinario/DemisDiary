@@ -182,6 +182,22 @@ button{
         }
     }
     
+    #segunda{
+        display: flex;
+        flex-direction: column;
+    }
+    #segunda button{
+
+            padding: 10px 20px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            width: 90px;
+            margin-left: 250px;
+            
+    }
 /* FIM CSS CALCULADORA */
 
 /* #grafico_album{
