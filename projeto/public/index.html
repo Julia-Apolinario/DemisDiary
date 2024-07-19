@@ -142,16 +142,16 @@
             </div>
         </section> -->
         <center>
-            <section class="calculadora" style="margin-top: 90px;">
+            <section class="calculadora">
                 <div id="primeira">
                 <h1 class="tituloanimado">Calculadora de Tempo de Audição de Demi Lovato</h1> <br><br><br><br>
                 <p>Informe quantas músicas da Demi Lovato você ouviu:</p><br><br>
-                <input type="number" id="input_musica"><br><br>
+                <input type="number" placeholder="Quantidade de músicas" id="input_musica"><br><br>
                 <button onclick="calcularTempo()">Calcular</button>
                 
             </div>
             
-            <div style="display: none;" id="segunda">
+            <div style="display: none;" id="voltar">
                 <div id="mensagem"></div>
                 <button  onclick="voltar()">Voltar</button>
             </div>
@@ -222,7 +222,7 @@
                 <img style="border-radius: 10%;"
                     src="https://upload.wikimedia.org/wikipedia/pt/9/9e/Demi_Lovato_-_Revamped.jpg" alt="Revamped">
             </a>
-        </div>
+        </div> 
     </div>
 
     <!-- INÍCIO FOOTER-->
@@ -265,7 +265,7 @@
 // AJUSTES FEITOS NO DIA 20/06/2024 (CONCLUÍDO AS 13:10)
 // REAJUSTES FEITOS DIA 12/07/2024 CONCLUÍDO AS 16:56
         function calcularTempo() {
-            document.getElementById('segunda').style.display = 'flex';
+            document.getElementById('voltar').style.display = 'flex';
             document.getElementById('primeira').style.display = 'none';
 
             var duracaoMusicaSegundos = 3.5 * 60; // Duração da música em segundos (3.5 minutos)
@@ -307,7 +307,7 @@
             }
         }
         function voltar(){
-            document.getElementById('segunda').style.display = 'none';
+            document.getElementById('voltar').style.display = 'none';
             document.getElementById('primeira').style.display = 'block';
         }
 
@@ -355,6 +355,5 @@
         //         })
         //         .catch(error => console.error('Falha na captura dos albuns', error));
         // }
-
 
     </script>

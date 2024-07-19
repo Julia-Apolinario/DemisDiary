@@ -156,6 +156,11 @@ button{
         width: 900px;
         border: 3px solid black;
         border-radius: 40px;
+        background-color: #C8C4C1;
+
+    }
+    .calculadora p{
+        font-size: 20px;
     }
 
     .tituloanimado {
@@ -163,6 +168,7 @@ button{
         border-right: 4px solid;
         white-space: nowrap;
         width: 47ch;
+        font-size: 33px;
         overflow: hidden;
         animation: animaTexto 2s steps(46), animaMarcador 0.5s linear infinite;
     }
@@ -182,11 +188,11 @@ button{
         }
     }
     
-    #segunda{
+    #voltar{
         display: flex;
         flex-direction: column;
     }
-    #segunda button{
+    #voltar button{
 
             padding: 10px 20px;
             background-color: #000000;
@@ -197,6 +203,17 @@ button{
             width: 90px;
             margin-left: 250px;
             
+    }
+
+    input{
+        margin: 13px;
+        width: 200px;
+        padding: 9px 15px;
+        border: 2px solid #000000;
+        border-radius: 30px;
+        background: transparent;
+        color: rgb(0, 0, 0);
+    
     }
 /* FIM CSS CALCULADORA */
 
@@ -672,3 +689,9 @@ a {
     font-weight: 400;
     text-align: center;
 }
+
+
+
+
+
+/* TESTE */
