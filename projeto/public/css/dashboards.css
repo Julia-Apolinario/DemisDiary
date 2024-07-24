@@ -5,40 +5,12 @@ body{
   background-attachment: fixed;
 }
 
- /* .ultimaPontuacao {
-  display: flex;
-  justify-content: center;
-  height: 400px;
-  width: 400px;
-
-}  */
-
  canvas {
   width: 100% !important;
   height: 100% !important;
 } 
 
-.max {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 40px;
-  text-align: center;
-  height: 400px;
-  width: 600px;
-  background-color:#EFF8FF;
-  box-shadow: 5px 5px 5px 5px rgba(0.5, 0.5, 0.5, 0.5);
-}
-
-.divdirecao {
-  display: flex;
-  width: 500px;
-  height: 180%;
-  margin-top: 550px;
-
-}
-
+/* CSS QUADRINHOS SUPERIORES */
 .quadrinhos {
   display: flex;
   flex-direction: row;
@@ -58,6 +30,8 @@ body{
   box-shadow: 5px 5px 5px 5px rgba(0.5, 0.5, 0.5, 0.5);
   background-color:#EFF8FF;
 }
+
+/* CSS GRAFICOS */
 
 #graficosdiv {
   display: flex;
@@ -96,6 +70,19 @@ body{
 
 }
 
+.max {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 40px;
+  text-align: center;
+  height: 400px;
+  width: 600px;
+  background-color:#EFF8FF;
+  box-shadow: 5px 5px 5px 5px rgba(0.5, 0.5, 0.5, 0.5);
+}
+
 /* INICIO CSS RANKING */
 .ranking{
   display: flex;
@@ -116,10 +103,10 @@ body{
   height: 40px;
   width: 300px;
   margin-bottom: 15px;
-  text-align: center;
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .lista{
   margin-top: 30px;
 }
-/* FIM CSS RANKING */

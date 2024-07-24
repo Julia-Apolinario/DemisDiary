@@ -74,7 +74,6 @@ nav ul, nav li{
     ;
 
 }
-
 /* FIM CSS HEADER */
 
 
@@ -217,23 +216,6 @@ button{
     }
 /* FIM CSS CALCULADORA */
 
-/* #grafico_album{
-    height: 400px;
-    width: 600px;
-}
-
-.grafico{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.subdiv{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} */
-
-
 /* INÍCIO CSS ALBUNS */
 .textinho{
     display: flex;
@@ -355,6 +337,8 @@ button{
 
 /* FIM CSS FOOTER */
 
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* CSS CADASTRO*/
 
 /* BODY */
@@ -500,7 +484,10 @@ border-radius: 10px;
   }
   /* FIM CSS CADASTRO*/
 
-  /* INICIO CSS LOGIN*/
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+  
+/* INICIO CSS LOGIN*/
   #Bodylogin{
     background-image: url(https://cdn.wallpapersafari.com/62/87/4zwd27.jpg);
     background-size: cover;
@@ -512,7 +499,6 @@ border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: start;
-    margin-top:60px;
     margin-bottom: 130px;
     margin-left: 250px;
     
@@ -520,10 +506,10 @@ border-radius: 10px;
 
 .login .card {
     justify-content: flex-end;
-    border: 1px solid #000000; /* Adiciona uma borda sólida cinza ao redor do cartão */
-    border-radius: 25px; /* Adiciona cantos arredondados */
-    padding: 20px; /* Adiciona espaço interno ao redor do conteúdo */
-    margin: 20px; /* Adiciona margem ao redor do cartão */
+    border: 1px solid #000000;
+    border-radius: 25px;
+    padding: 20px;
+    margin: 20px;
     margin-left: 50px;
     margin-top: 90px;
     height: 350px;
@@ -689,9 +675,3 @@ a {
     font-weight: 400;
     text-align: center;
 }
-
-
-
-
-
-/* TESTE */

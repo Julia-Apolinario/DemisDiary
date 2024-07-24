@@ -32,6 +32,7 @@
         </section>
     </header>
     <!-- FIM HEADER-->
+
     <!-- INÍCIO BANNERS-->
     <section style="margin-bottom: 30px; margin-top: 90px; " class="introducao">
         <div class="container">
@@ -89,6 +90,8 @@
                 </p>
             </div>
         </div>
+
+        <!-- CARDZINHOS -->
         <div class="divulgacao">
             <div class="container">
                 <div class="card">
@@ -115,61 +118,23 @@
                 </div>
             </div>
         </div>
-        <!-- <section>
-            <div style="margin-top: 90px;" class="container">
-                <div class="introducao">
-                    <img style="border-radius: 10%; margin-left: 260px;" src="img/fotoHelena.png" width="450px"
-                        height="450px" alt="Helena">
-                </div>
-                <div class="introducaotext">
-                    <br>
-                    <h3>Eu,<span style="color: #791540;">Júlia!</span></h3>
-                    <br><br>
-                    <p>
-                        Escolhi este tema porque ele me toca profundamente. Sempre que passo tempo com minha afilhada,
-                        Helena, nossa conexão se fortalece. Ela é o meu xodó, sempre grudada em mim, e esses momentos
-                        juntos são especiais demais para não serem compartilhados.<br><br>
-
-                        Escutar músicas da Demi Lovato com Helena se tornou uma tradição nossa. A alegria que vejo em
-                        seus olhos quando a música começa a tocar é indescritível, São memórias que guardarei para sempre.<br><br>
-
-                        Para mim, essas sessões musicais vão além da simples diversão. Elas representam a pureza do
-                        nosso vínculo, um laço de amor e cumplicidade que cresce a cada dia. Compartilhar essa
-                        experiência com minha afilhada é uma maneira de mostrar a ela o quanto ela é amada e importante
-                        na minha vida.
-                    </p>
-                </div>
-            </div>
-        </section> -->
+        <!-- CALCULADORA -->
         <center>
             <section class="calculadora">
                 <div id="primeira">
-                <h1 class="tituloanimado">Calculadora de Tempo de Audição de Demi Lovato</h1> <br><br><br><br>
-                <p>Informe quantas músicas da Demi Lovato você ouviu:</p><br><br>
-                <input type="number" placeholder="Quantidade de músicas" id="input_musica"><br><br>
-                <button onclick="calcularTempo()">Calcular</button>
-                
-            </div>
-            
-            <div style="display: none;" id="voltar">
-                <div id="mensagem"></div>
-                <button  onclick="voltar()">Voltar</button>
-            </div>
+                    <h1 class="tituloanimado">Calculadora de Tempo de Audição de Demi Lovato</h1> <br><br><br><br>
+                    <p>Informe quantas músicas da Demi Lovato você ouviu:</p><br><br>
+                    <input type="number" placeholder="Quantidade de músicas" id="input_musica"><br><br>
+                    <button onclick="calcularTempo()">Calcular</button>
+
+                </div>
+
+                <div style="display: none;" id="voltar">
+                    <div id="mensagem"></div>
+                    <button onclick="voltar()">Voltar</button>
+                </div>
             </section>
         </center>
-        <!-- <div id="chamaraqui" style="margin-top: 90px;" class="grafico">
-            <h1>Ranking De Popularidade:</h1>
-        </div>
-        <div class="subdiv">
-            <br>
-            <h3>Ranking exclusivo do site, que mede a popularidade dos álbuns da Demi Lovato de acordo com os usuarios.
-            </h3>
-        </div>
-        </div>
-        <div class="div_graficopie">
-            <canvas class="graficos" id="grafico_album"></canvas>
-        </div> -->
-
     </section>
 
     <!-- INÍCIO PRODUTOS-->
@@ -222,7 +187,7 @@
                 <img style="border-radius: 10%;"
                     src="https://upload.wikimedia.org/wikipedia/pt/9/9e/Demi_Lovato_-_Revamped.jpg" alt="Revamped">
             </a>
-        </div> 
+        </div>
     </div>
 
     <!-- INÍCIO FOOTER-->
@@ -247,7 +212,7 @@
                         <li>Email: Demisdiary@gmail.com</li>
                         <li>Telefone: (11) 99999-8888</li>
                     </ul>
-                   
+
                 </div>
             </div>
 
@@ -262,8 +227,8 @@
 
     <script>
 
-// AJUSTES FEITOS NO DIA 20/06/2024 (CONCLUÍDO AS 13:10)
-// REAJUSTES FEITOS DIA 12/07/2024 CONCLUÍDO AS 16:56
+        // AJUSTES FEITOS NO DIA 20/06/2024 (CONCLUÍDO AS 13:10)
+        // REAJUSTES FEITOS DIA 12/07/2024 CONCLUÍDO AS 16:56
         function calcularTempo() {
             document.getElementById('voltar').style.display = 'flex';
             document.getElementById('primeira').style.display = 'none';
@@ -272,7 +237,7 @@
             var numeroMusicas = Number(input_musica.value); // Obtém o número de músicas do input
             var tempoTotalSegundos = numeroMusicas * duracaoMusicaSegundos; // Tempo total em segundos
             mensagem.innerHTML = ``; // limpa a mensagem quando a função é iniciada
-     
+
             if (numeroMusicas === "") {
                 alert("Coloque uma quantidade de música para continuar!");
             } else {
@@ -289,11 +254,11 @@
                          <img style="height: 300px; width:400px;" src="https://ofuxico.com.br/img/upload/noticias/2012/12/24/157742_36.jpg"><br><br>`;
 
                     } else if (horas >= 2 && horas < 3) {
-                       
+
                         mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música.Ou seja Mais que duas horas!! <br><br><br>
                         <img style="height: 300px; width:400px;"  src="https://i.pinimg.com/236x/68/67/82/68678220bfa2d118e031a162ffbdadfb.jpg"><br><br>
                         `;
-                    }else if( horas >= 3){
+                    } else if (horas >= 3) {
                         mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música.Ou seja Mais que <b>3</b> horas!! <br><br><br>
                         <img style="height: 300px; width:400px;"  src="https://pbs.twimg.com/media/DkRsFjHXcAAlU8c.jpg"><br><br>
                         `;
@@ -306,54 +271,9 @@
 
             }
         }
-        function voltar(){
+        function voltar() {
             document.getElementById('voltar').style.display = 'none';
             document.getElementById('primeira').style.display = 'block';
         }
-
-
-        // function buscarAlbum() {
-        //     fetch(`/album/buscarAlbum`, { cache: 'no-store' })
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             var albumData = data.map(album => album.NumeroUsuarios);
-        //             var ctx5 = document.getElementById('grafico_album').getContext('2d');
-        //             var labelS = ['Álbuns'];
-        //             const chartData = {
-        //                 labels: [
-        //                     'DontForget',
-        //                     'HereWeGoAgain',
-        //                     'Unbroken',
-        //                     'Demi',
-        //                     'Confident',
-        //                     'TellMeYouLoveMe',
-        //                     'DancingWithTheDevil',
-        //                     'HolyFvck',
-        //                     'Revamped'
-        //                 ],
-        //                 datasets: [
-        //                     {
-        //                         label: [''],
-        //                         data: albumData,
-        //                         backgroundColor: ['#C7B7A3', '#fff5c6', '#ffe2c6', '#ffcfbc', '#ffb3d6', '#ffc6f8', '#edd0fd', '#c0c0fd', '#b8d8fd', '#33FFB5'],
-        //                     }
-        //                 ],
-
-
-        //             };
-
-        //             var config5 = {
-        //                 type: 'bar',
-        //                 data: chartData,
-        //                 options: {
-        //                     responsive: true,
-        //                     maintainAspectRatio: false
-        //                 }
-        //             };
-
-        //             new Chart(ctx5, config5);
-        //         })
-        //         .catch(error => console.error('Falha na captura dos albuns', error));
-        // }
 
     </script>

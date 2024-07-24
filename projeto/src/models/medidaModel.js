@@ -34,13 +34,21 @@ GROUP BY MONTH(data_hora);
 
 }
 
+/*
+
+GROUP BY MONTH(data_hora):
+
+Agrupa os registros pelo mês extraído da coluna data_hora. Cada grupo representará todas as pontuações feitas em um determinado mês.
+
+*/
+
 function ultimaPont(fk_usuario) {
 
     var instrucaoSql = `
     SELECT IFNULL(ROUND(AVG((nota / 10) * 100)), 'ainda não fez') AS PorcentagemAcertos
     FROM usuario
     JOIN pontuacao ON fk_usuario = idUsuario
-    WHERE fk_usuario = 1;
+    WHERE fk_usuario = ${fk_usuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
