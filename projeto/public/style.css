@@ -132,7 +132,12 @@ nav ul, nav li{
     font-size: 24px;
     color: #000000;
 }
+/* tirando os estilo padrão que listas do html tem */
+/* concluído 25/07/2024 */
+.card ul{
+    list-style: none; /* Remove o estilo */
 
+}
 /* FIM CSS BANERS*/
 
 /* INÍCIO CSS CALCULADORA */

@@ -11,10 +11,9 @@
     <link rel="stylesheet" href="../style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
+<!-- onload: chama a função quando a página é recarregada -->
 <body class="bodydash" onload="obterDadosGrafico(), maximoMinimo(), ultimaPont(),ranking(),ultimaRodada(),ultimoMes()">
-
-
+    <!-- header -->
     <header class="headercadastro">
         <div class="containercadastro">
             <div class="logo">
@@ -31,7 +30,7 @@
             </div>
         </div>
     </header>
-
+<!-- pequenas divs com informações rápidas -->
     <div id="quadro" class="quadrinhos">
         <div class="ultimo">
             <b> Última Dia:</b>
@@ -52,7 +51,6 @@
         <div class="geral">
             <h3><span id="acertos"><br></span></h3><br>
             <b><span style="color: purple;" id="div_mensagem"></span></b>
-            <!-- <canvas style="display: none;" id="acertosgerais"></canvas> -->
         </div>
 
         <!-- AJUSTES FEITOS NO DIA 21/06/2024 (CONCLUÍDO AS 13:30) -->
