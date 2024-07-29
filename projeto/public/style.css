@@ -220,9 +220,85 @@ button{
     
     }
 /* FIM CSS CALCULADORA */
+/* produtos */
 
+.foto {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    perspective: 1000px;
+    box-shadow: 0 0 0 5px #ffffff80;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  
+  .foto img{
+   background-size: cover;
+   width: 250px;
+    height: 250px;
+}
+  
+  .foto:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+  }
+  
+  .foto__conteudo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f2f2f2;
+    transform: rotateX(-90deg);
+    transform-origin: bottom;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .foto:hover .foto__conteudo {
+    transform: rotateX(0deg); 
+    /* A função CSS rotateX() define uma transformação que gira um elemento em torno do eixo x (horizontal) sem deformá-lo. */
+  }
+  
+  .foto__titulo {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+    font-weight: 700;
+  }
+  
+  .foto:hover svg {
+    scale: 0;
+  }
+  
+  .foto__descricao {
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: #777;
+    line-height: 1.4;
+  }
+
+  .produto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+   h1{
+    margin-top: 90px;
+    display: flex;
+    justify-content: center;
+  }
 /* INÍCIO CSS ALBUNS */
-.textinho{
+/* .textinho{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -255,7 +331,7 @@ button{
 
 .section img:hover {
     transform: scale(1.1); 
-}
+} */
 
 /* FIM CSS ALBUNS */
 
@@ -280,7 +356,7 @@ button{
     flex: 1;
     margin: 20px;
 }
-.footer-title {
+.footer-titul {
     font-size: 20px;
     margin-bottom: 20px;
     border-bottom: 2px solid #cd6dba;
@@ -382,7 +458,7 @@ button{
     flex-direction: column;
 }
 
-.cadastro .card {
+.cadastro .foto {
     justify-content: flex-end;
     border: 1px solid #000000; /* Adiciona uma borda sólida cinza ao redor do cartão */
     border-radius: 25px; /* Adiciona cantos arredondados */
@@ -394,7 +470,7 @@ button{
     width: 350px;
 }
 
-.cadastro .card h2{
+.cadastro .foto h2{
     display: flex;
     justify-content: center;
     color: #000000;
