@@ -132,25 +132,27 @@
                 </div>
             </div>
         </div>
-        <!-- CALCULADORA -->
-        <center>
-            <section class="calculadora">
-                <div id="primeira">
-                    <h1 class="tituloanimado">Calculadora de Tempo de Audição de Demi Lovato</h1> <br><br><br><br>
-                    <p>Informe quantas músicas da Demi Lovato você ouviu:</p><br><br>
-                    <input type="number" placeholder="Quantidade de músicas" id="input_musica"><br><br>
-                    <button onclick="calcularTempo()">Calcular</button>
-
-                </div>
-
-                <div style="display: none;" id="voltar">
-                    <div id="mensagem"></div>
-                    <button onclick="voltar()">Voltar</button>
-                </div>
-            </section>
-        </center>
     </section>
-    <h1>Conheça os albuns da Demi Lovato!!</h1>
+     <!-- CALCULADORA -->
+     <center>
+        <section class="calculadora">
+            <div id="primeira">
+                <h1 class="tituloanimado">Calculadora de Tempo de Audição de Demi Lovato</h1> <br><br><br><br>
+                <p>Informe quantas músicas da Demi Lovato você ouviu:</p><br><br>
+                <input type="number" placeholder="Quantidade de músicas" id="input_musica"><br><br>
+                <button onclick="calcularTempo()">Calcular</button>
+
+            </div>
+
+            <div style="display: none;" id="voltar">
+                <div id="mensagem"></div>
+                <button onclick="voltar()">Voltar</button>
+            </div>
+        </section>
+       
+    </center>
+    
+    <h1 id="tituloalbum">Conheça os albuns da Demi Lovato!!</h1>
 
 <section class="produto" style="margin-top: 15px;">
     <div class="foto">
@@ -176,18 +178,18 @@
          <img src="https://i.scdn.co/image/ab67616d0000b27383fc43cfc25d836e17f8cc30" alt="">
           <div class="foto__conteudo">
             <p class="foto__titulo">Unbroken</p>
-            <p class="foto__descricao">blablabla</p>
+            <p class="foto__descricao">Considerado por muitos fãs como o seu melhor trabalho, o disco foi lançado em setembro de 2011, porém estreou na 4º posição da Billboard 200. O disco traduz os sentimentos vividos por Demi em um momento difícil de sua vida pessoal, e tem músicas do gênero pop e R&B.</p>
           </div>
         </div>
       
 </section>
 
-<section class="produto">
+<section class="produto redes">
     <div class="foto">
        <img src="https://upload.wikimedia.org/wikipedia/pt/2/26/Capa_de_Demi_-_Vers%C3%A3o_Deluxe.jpeg" alt="">
         <div class="foto__conteudo">
           <p class="foto__titulo">Demi</p>
-          <p class="foto__descricao">blablabla</p>
+          <p class="foto__descricao">A famosa faixa “Heart Attack” marcou o lançamento do álbum como o primeiro single. Mais ousado do que outros trabalhos, o disco vendeu mais de 160 mil cópias apenas em solo brasileiro, e alcançou o 3º lugar da Billboard 200.</p>
         </div>
       </div>
       
@@ -195,7 +197,7 @@
          <img src="https://i.scdn.co/image/ab67616d0000b273ed164cf1c10f028e8f528784" alt="">
           <div class="foto__conteudo">
             <p class="foto__titulo">Confident</p>
-            <p class="foto__descricao">blablabla</p>
+            <p class="foto__descricao">Lançado em 2015, o quinto álbum de estúdio de Demi Lovato teve 3 singles; “Cool For the Summer”, “Confident” e “Stone Cold”. Conquistou o disco de diamante no Brasil, com mais 160 mil cópias vendidas.</p>
           </div>
         </div>
       
@@ -204,9 +206,11 @@
          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMqUJ4BhnoUc2miRo1VJjdQHIYNJ70_CWA6A&s" alt="">
           <div class="foto__conteudo">
             <p class="foto__titulo">Tell Me You Love Me</p>
-            <p class="foto__descricao">blablabla</p>
+            <p class="foto__descricao">R&B, Soul e Dream pop… Demi sempre traz algo diferente para seus discos. A mistura dos três gêneros resulta em faixas envolventes como “Sorry Not Sorry”, que aliás foi o primeiro single da era.  
+            </p>
           </div>
         </div>
+
       
 </section>
 
@@ -215,7 +219,7 @@
        <img src="https://universalmusic.vtexassets.com/arquivos/ids/176354-800-auto?v=637965171559230000&width=800&height=auto&aspect=true" alt="">
         <div class="foto__conteudo">
           <p class="foto__titulo">Dancing With The Devil</p>
-          <p class="foto__descricao">blablabla</p>
+          <p class="foto__descricao">Seu mais recente trabalho, lançado em 2021, o disco pop conta com 19 faixas em sua edição padrão. As letras das músicas são sobre a jornada de Lovato e seus obstáculos após ter dado entrada no hospital por overdose de drogas em 2018.</p>
         </div>
       </div>
     
@@ -224,7 +228,7 @@
        <img src="https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2023/01/12/925579661-demi-lovato-site-oficial.jpg" alt="">
         <div class="foto__conteudo">
           <p class="foto__titulo">Holy Fvck</p>
-          <p class="foto__descricao">blablabla</p>
+          <p class="foto__descricao">O álbum, lançado em 2022, é um trabalho ousado e provocante com 16 faixas em sua edição padrão. As letras exploram temas de empoderamento, autodescoberta e superação pessoal.</p>
         </div>
       </div>
     
@@ -233,9 +237,25 @@
        <img src="https://upload.wikimedia.org/wikipedia/pt/9/9e/Demi_Lovato_-_Revamped.jpg" alt="">
         <div class="foto__conteudo">
           <p class="foto__titulo">Revamped</p>
-          <p class="foto__descricao">blablabla</p>
+          <p class="foto__descricao">Este álbum, também lançado em 2022, apresenta versões reimaginadas de alguns dos maiores sucessos de Demi Lovato. Com novas abordagens e produção renovada, as faixas ganham uma nova vida, mostrando a evolução artística da cantora.</p>
         </div>
       </div>
+</section>
+<section>
+    <div class="quadros">
+        <div class="card vermelho">
+            <p class="tituloquadro">Instragram</p>
+            <p class="segundo-text">Siga a Demi Lovato no Instagram</p>
+        </div>
+        <div class="card azul">
+            <p class="tituloquadro">Facebook</p>
+            <p class="segundo-text">Siga a Demi Lovato no Facebook</p>
+        </div>
+        <div class="card verde">
+            <p class="tituloquadro">Youtube</p>
+            <p class="segundo-text">Siga a Demi Lovato no Youtube</p>
+        </div>
+    </div>
 </section>
     <!-- INÍCIO FOOTER-->
     <div class="footer">

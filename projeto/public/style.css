@@ -188,7 +188,7 @@ button{
             width: 0;
         }
         100% {
-            width: 47ch;
+            width: 46ch;
         }
     }
     
@@ -220,6 +220,60 @@ button{
     
     }
 /* FIM CSS CALCULADORA */
+
+.quadros {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 9px;
+    margin-left: 730px;
+  }
+  
+  .quadros .vermelho {
+    background-color: #f43f5e;
+  }
+  
+  .quadros .azul {
+    background-color: #3b82f6;
+  }
+  
+  .quadros .verde {
+    background-color: #22c55e;
+  }
+  
+  .quadros .card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100px;
+    width: 250px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 400ms;
+
+  }
+  
+  .quadros .card p.tituloquadro {
+    font-size: 1em;
+    font-weight: 700;
+  }
+  
+  .quadros .card p.segundo-text {
+    font-size: .7em;
+  }
+  
+  .quadros .card:hover {
+    transform: scale(1.1, 1.1);
+  }
+  
+  .quadros:hover > .card:not(:hover) {
+    filter: blur(10px);
+    transform: scale(0.9, 0.9);
+  }
+
 /* produtos */
 
 .foto {
@@ -266,18 +320,15 @@ button{
   .foto:hover .foto__conteudo {
     transform: rotateX(0deg); 
     /* A função CSS rotateX() define uma transformação que gira um elemento em torno do eixo x (horizontal) sem deformá-lo. */
-  }
-  
+   }
+   
   .foto__titulo {
     margin: 0;
     font-size: 24px;
     color: #333;
     font-weight: 700;
   }
-  
-  .foto:hover svg {
-    scale: 0;
-  }
+
   
   .foto__descricao {
     margin: 10px 0 0;
@@ -292,48 +343,11 @@ button{
     align-items: center;
   }
 
-   h1{
+   #tituloalbum{
     margin-top: 90px;
     display: flex;
     justify-content: center;
   }
-/* INÍCIO CSS ALBUNS */
-/* .textinho{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 30px;
-}
-
-.carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.section {
-    display: flex;
-    gap: 90px;
-    transition: transform 0.5s ease;
-    margin-bottom: 10px;
-}
-
-.section img {
-    width: 200px;
-    height: auto;
-    transition: transform 0.3s ease;
-}
-
-.section img:hover {
-    transform: scale(1.1); 
-} */
-
-/* FIM CSS ALBUNS */
 
 /* INÍCIO CSS FOOTER */
 
