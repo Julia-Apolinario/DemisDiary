@@ -2,194 +2,215 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demi's Diary || Cadastro</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="./js/sessao.js"></script>
-    </head>
-<body id="Bodycadastro" onload="listar()">
-    <!--INÍCIO HEADER-->
-    <header class="headercadastro">
-        <div class="containercadastro">
-            <div class="logo">
-                <a href="index.html"><img src="img/logo.png" class="imagemLogo"></a>
-            </div>
-            <div class="menu">
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <li class="active"><a href="cadastro.html">Cadastro</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demi's Diary || Cadastro</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="./js/sessao.js"></script>
+</head>
 
-    <!-- formulário de cadastro -->
-    <div class="cadastro">
-      <div class="alerta_erro">
-        <div class="card_erro" id="cardErro">
-          <span id="mensagem_erro"></span>
-        </div>
+<body id="Bodycadastro" onload="listar()">
+  <!--INÍCIO HEADER-->
+  <header class="headercadastro">
+    <div class="containercadastro">
+      <div class="logo">
+        <a href="index.html"><img src="img/logo.png" class="imagemLogo"></a>
       </div>
-        <div class="card">
-            <h2>Receba Nossas Atualizações!</h2><br>
-            <div class="formulario">
-                <div class="campo">
-                    <label>Nome:</label>
-                    <input type="text" placeholder="Digite seu nome" id="nome_input">
-                </div>
-                <div class="campo">
-                    <label>E-mail:</label>
-                    <input type="text" placeholder="Digite seu email" id="email_input">
-                </div>
-                <div class="campo">
-                    <label>Senha:</label>
-                    <input type="password" placeholder="Digite a sua senha" id="senha_input">
-                </div>
-                <div class="campo">
-                    <label>Confirmação Senha:</label>
-                    <input type="password" placeholder="Confirme a senha" id="confirmacao_senha_input">
-                </div>
-                <div class="campo">
-                  <label>Seu álbum favorito:</label>
-                 <select id="album_input">
-                  <option selected>Selecione um álbum</option>
-                 </select>
-              </div>
-                <button onclick="cadastrar()">CADASTRAR</button>
-            </div>
-             <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif" />
-                  </div>
-          
-                  <div id="div_erros_login"></div>
-        </div>
+      <div class="menu">
+        <nav>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li class="active"><a href="cadastro.html">Cadastro</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
+  </header>
+
+  <!-- formulário de cadastro -->
+  <div class="cadastro">
+    <!-- Seção de alerta de erro -->
+    <div class="alerta_erro">
+      <div class="card_erro" id="cardErro">
+        <span id="mensagem_erro"></span> <!-- Mensagem de erro exibida ao usuário -->
+      </div>
+    </div>
+
+    <!-- Card principal do formulário de cadastro -->
+    <div class="card">
+      <h2>Receba Nossas Atualizações!</h2><br>
+
+      <!-- Formulário de cadastro -->
+      <div class="formulario">
+        <!-- Campo para o nome do usuário -->
+        <div class="campo">
+          <label>Nome:</label>
+          <input type="text" placeholder="Digite seu nome" id="nome_input">
+        </div>
+
+        <!-- Campo para o email do usuário -->
+        <div class="campo">
+          <label>E-mail:</label>
+          <input type="text" placeholder="Digite seu email" id="email_input">
+        </div>
+
+        <!-- Campo para a senha do usuário -->
+        <div class="campo">
+          <label>Senha:</label>
+          <input type="password" placeholder="Digite a sua senha" id="senha_input">
+        </div>
+
+        <!-- Campo para a confirmação da senha -->
+        <div class="campo">
+          <label>Confirmação Senha:</label>
+          <input type="password" placeholder="Confirme a senha" id="confirmacao_senha_input">
+        </div>
+
+        <!-- Campo para selecionar o álbum favorito -->
+        <div class="campo">
+          <label>Seu álbum favorito:</label>
+          <select id="album_input">
+            <option selected>Selecione um álbum</option>
+          </select>
+        </div>
+
+        <!-- Botão para cadastrar -->
+        <button onclick="cadastrar()">CADASTRAR</button>
+      </div>
+
+      <!-- Div para mostrar um gif de loading enquanto o cadastro está sendo processado -->
+      <div id="div_aguardar" class="loading-div">
+        <img src="./assets/circle-loading.gif" id="loading-gif" />
+      </div>
+
+      <!-- Div para mostrar erros de login -->
+      <div id="div_erros_login"></div>
+    </div>
+  </div>
+
 </body>
 
 </html>
 <script>
-    function cadastrar() {
-      aguardar();
-  
-      //Recupere o valor da nova input pelo nome do id
-      // Agora vá para o método fetch logo abaixo
-      var nomeVar = nome_input.value;
-      var emailVar = email_input.value;
-      var senhaVar = senha_input.value;
-      var albumVar = album_input.value;
-      var confirmacaoSenhaVar = confirmacao_senha_input.value;
-      var arrobaVar = emailVar.indexOf('@');
-      var pontoVar = emailVar.indexOf('.');
-      if (
-        nomeVar.length <= 1
-      ) {
-        cardErro.style.display = "flex";
-        mensagem_erro.innerHTML += `O nome tem de ter mais de 1 caractere.`;
-  
-        finalizarAguardar();
-        return false;
-      } else if (
-        arrobaVar == -1 || pontoVar == -1
-      ) {
-        cardErro.style.display = "flex";
-        mensagem_erro.innerHTML = `O E-Mail tem de ter @ e ponto.`;
-  
-        finalizarAguardar();
-        return false;
-      }else if (
-        senhaVar.length <= 6
-      ) {
-        cardErro.style.display = "flex";
-        mensagem_erro.innerHTML = `A senha tem de ter mais de 6 caracteres.`;
-  
-        finalizarAguardar();
-        return false;
-      } else if (
-        confirmacaoSenhaVar != senhaVar
-      ) {
-        cardErro.style.display = "flex";
-        mensagem_erro.innerHTML = `A confirmação de senha tem de ser igual a senha.`;
-  
-        finalizarAguardar();
-        return false;
-      } else if (
-        nomeVar == "" ||
-        emailVar == "" ||
-        senhaVar == "" ||
-        confirmacaoSenhaVar == ""
-      ) {
-        cardErro.style.display = "flex";
-        mensagem_erro.innerHTML =
-          "(Mensagem de erro para todos os campos em branco)";
-  
-        finalizarAguardar();
-      }else {
-        setInterval(sumirMensagem, 5000);
-      }
-  
-      // Enviando o valor da nova input
-      fetch("/usuarios/cadastrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          // crie um atributo que recebe o valor recuperado aqui
-          // Agora vá para o arquivo routes/usuario.js
-          nomeServer: nomeVar,
-          emailServer: emailVar,
-          senhaServer: senhaVar,
-          albumServer: albumVar,
-        }),
-      })
-        .then(function (resposta) {
-          console.log("resposta: ", resposta);
-  
-          if (resposta.ok) {
-            cardErro.style.display = "block";
-  
-            mensagem_erro.innerHTML =
-              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-  
-            setTimeout(() => {
-              window.location = "login.html";
-            }, "2000");
-  
-            limparFormulario();
-            finalizarAguardar();
-          } else {
-            throw "Houve um erro ao tentar realizar o cadastro!";
-          }
-        })
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-          finalizarAguardar();
-        });
-  
+  function cadastrar() {
+    aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var albumVar = album_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var arrobaVar = emailVar.indexOf('@');
+    var pontoVar = emailVar.indexOf('.');
+    if (
+      nomeVar.length <= 1
+    ) {
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML += `O nome tem de ter mais de 1 caractere.`;
+
+      finalizarAguardar();
       return false;
+    } else if (
+      arrobaVar == -1 || pontoVar == -1
+    ) {
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = `O E-Mail tem de ter @ e ponto.`;
+
+      finalizarAguardar();
+      return false;
+    } else if (
+      senhaVar.length <= 6
+    ) {
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = `A senha tem de ter mais de 6 caracteres.`;
+
+      finalizarAguardar();
+      return false;
+    } else if (
+      confirmacaoSenhaVar != senhaVar
+    ) {
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = `A confirmação de senha tem de ser igual a senha.`;
+
+      finalizarAguardar();
+      return false;
+    } else if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+    } else {
+      setInterval(sumirMensagem, 5000);
     }
 
-    function listar() {
-      fetch("/album/listar", {
-        method: "GET",
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        albumServer: albumVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
       })
-        .then(function (resposta) {
-          resposta.json().then((album) => {
-            album.forEach((album) => {
-              album_input.innerHTML += `<option value='${album.idAlbum}'>${album.nome}</option>`;
-            });
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  function listar() {
+    fetch("/album/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((album) => {
+          album.forEach((album) => {
+            album_input.innerHTML += `<option value='${album.idAlbum}'>${album.nome}</option>`;
           });
-        })
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
         });
-    }
-  
-    function sumirMensagem() {
-      cardErro.style.display = "none";
-    }
-  </script>
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>

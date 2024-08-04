@@ -219,13 +219,15 @@ nav ul, nav li{
     
     }
 /* FIM CSS CALCULADORA */
-
-.quadros {
+#social{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 9px;
-    margin-left: 730px;
+    
+}
+.quadros {
+    display: flex;
+    flex-direction: row; 
   }
   
   .quadros .vermelho {
@@ -249,7 +251,6 @@ nav ul, nav li{
     height: 100px;
     width: 250px;
     border-radius: 10px;
-    color: white;
     cursor: pointer;
     transition: 400ms;
 
@@ -266,7 +267,7 @@ nav ul, nav li{
   
   .quadros .card:hover {
     transform: scale(1.1, 1.1); 
-    /* animação que será realizada quando o mouse (hoover) estiver em cima do botão */
+    /* animação que será realizada quando o mouse (hover) estiver em cima do botão */
   }
   
 
@@ -469,7 +470,7 @@ nav ul, nav li{
     flex-direction: column;
 }
 
-.cadastro .foto {
+.cadastro .card {
     justify-content: flex-end;
     border: 1px solid #000000; /* Adiciona uma borda sólida cinza ao redor do cartão */
     border-radius: 25px; /* Adiciona cantos arredondados */
@@ -626,6 +627,12 @@ border-radius: 10px;
     background-attachment: fixed;
  
 }
+
+  .containerquiz {
+            width: 990px;
+            display: flex;
+            justify-content: space-between;
+        }
 
 a {
     text-decoration: none;

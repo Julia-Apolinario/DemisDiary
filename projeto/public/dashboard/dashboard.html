@@ -274,11 +274,8 @@
                     div_mensagem.innerHTML += `você está na média!(50%) <br><br><br><img src="https://media4.giphy.com/media/sBaLkxCgfaoNy/giphy.gif">`;
                 } else if (porcentagemGeral > 50 && porcentagemGeral < 90) {
                     div_mensagem.innerHTML += `você está acima da média (50%)<br><br><br><img src="https://todateen.com.br/wp-content/uploads/2014/08/tumblr_lx58mkv6cC1r4kfic.gif"> `;
-                } else if (porcentagemGeral > 90) {
+                } else if (porcentagemGeral >= 90) {
                     div_mensagem.innerHTML += `WOW!! Você sabe tudo da Demi Lovato!! <br><br><br><img src="https://todateen.com.br/wp-content/uploads/2014/08/tumblr_lx58mkv6cC1r4kfic.gif">`;
-                } else {
-                    document.getElementById('acertos').style.display = "none";
-                    div_mensagem.innerHTML += ` ${porcentagemGeral} :( <br><br><br><img src="https://i.gifer.com/4SRh.gif">`;
                 }
             })
             .catch(error => console.error('Falha na captura de acertos (porcentagem)', error));

@@ -28,33 +28,49 @@
         </div>
     </header>
         <!-- formulário de login -->
-    <div>
-        <div class="login">
-            <div class="alerta_erro">
-                <div class="card_erro" id="cardErro">
-                    <span id="mensagem_erro"></span>
-                </div>
-            </div>
-            <div class="base">
-                <h2>Bem-Vindo!</h2><br><br>
-                <div class="formulario">
-                    <div class="campo">
-                        <label>E-mail:</label>
-                        <input type="text" placeholder="Digite seu email" id="email_input">
+        <div>
+            <!-- Seção de login -->
+            <div class="login">
+                <!-- Div para exibir alerta de erro -->
+                <div class="alerta_erro">
+                    <div class="card_erro" id="cardErro">
+                        <!-- Span onde a mensagem de erro será exibida -->
+                        <span id="mensagem_erro"></span>
                     </div>
-                    <div class="campo">
-                        <label>Senha:</label>
-                        <input type="password" placeholder="Digite a sua senha" id="senha_input">
+                </div>
+        
+                <!-- Card principal contendo o formulário de login -->
+                <div class="base">
+                    <!-- Título do formulário -->
+                    <h2>Bem-Vindo!</h2><br><br>
+        
+                    <!-- Formulário de login -->
+                    <div class="formulario">
+                        <!-- Campo para inserir o e-mail -->
+                        <div class="campo">
+                            <label>E-mail:</label>
+                            <input type="text" placeholder="Digite seu email" id="email_input">
+                        </div>
+                        <!-- Campo para inserir a senha -->
+                        <div class="campo">
+                            <label>Senha:</label>
+                            <input type="password" placeholder="Digite a sua senha" id="senha_input">
+                        </div>
+                        <!-- Botão para realizar o login -->
+                        <button onclick="entrar()">LOGIN</button>
                     </div>
-                    <button onclick="entrar()">LOGIN</button>
+        
+                    <!-- Div para exibir o gif de loading enquanto processa o login -->
+                    <div id="div_aguardar" class="loading-div">
+                        <img src="./assets/circle-loading.gif" id="loading-gif" />
+                    </div>
+        
+                    <!-- Div para exibir erros de login -->
+                    <div id="div_erros_login"></div>
                 </div>
-                <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif" />
-                </div>
-
-                <div id="div_erros_login"></div>
             </div>
         </div>
+        
 </body>
 </html>
 <script>
