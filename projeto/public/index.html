@@ -323,8 +323,9 @@
                     <ul>
                         <li>Email: Demisdiary@gmail.com</li>
                         <li>Telefone: (11) 99999-8888</li>
-                    </ul>
+                    </ul><br>
 
+                    <button onclick="mudar()">Surpresa!</button>
                 </div>
             </div>
 
@@ -336,45 +337,73 @@
     <!-- FIM FOOTER-->
 
 </body>
-    <!-- SCRIPTS -->
-    <script>
+<!-- SCRIPTS -->
+<script>
 
-        // AJUSTES FEITOS NO DIA 20/06/2024 (CONCLUÍDO AS 13:10)
-        // REAJUSTES FEITOS DIA 12/07/2024 CONCLUÍDO AS 16:56
-        function calcularTempo() {
-    document.getElementById('voltar').style.display = 'flex';
-    document.getElementById('primeira').style.display = 'none';
+    // AJUSTES FEITOS NO DIA 20/06/2024 (CONCLUÍDO AS 13:10)
+    // REAJUSTES FEITOS DIA 12/07/2024 CONCLUÍDO AS 16:56
+    function calcularTempo() {
+        document.getElementById('voltar').style.display = 'flex';
+        document.getElementById('primeira').style.display = 'none';
 
-    var duracaoMusicaSegundos = 3.5 * 60; // Duração da música em segundos (3.5 minutos)
-    var numeroMusicas = Number(input_musica.value); // Obtém o número de músicas do input
-    var tempoTotalSegundos = numeroMusicas * duracaoMusicaSegundos; // Tempo total em segundos
-    mensagem.innerHTML = ``; // Limpa a mensagem quando a função é iniciada
+        var duracaoMusicaSegundos = 3.5 * 60; // Duração da música em segundos (3.5 minutos)
+        var numeroMusicas = Number(input_musica.value); // Obtém o número de músicas do input
+        var tempoTotalSegundos = numeroMusicas * duracaoMusicaSegundos; // Tempo total em segundos
+        mensagem.innerHTML = ``; // Limpa a mensagem quando a função é iniciada
 
-    var horas = Math.floor(tempoTotalSegundos / 3600); // Calcula as horas
-    var minutos = Math.floor((tempoTotalSegundos % 3600) / 60); // Calcula os minutos
-    var segundos = tempoTotalSegundos % 60; // Calcula os segundos
+        var horas = Math.floor(tempoTotalSegundos / 3600); // Calcula as horas
+        var minutos = Math.floor((tempoTotalSegundos % 3600) / 60); // Calcula os minutos
+        var segundos = tempoTotalSegundos % 60; // Calcula os segundos
 
-    // VALIDAÇÃO DE ACORDO COM O TEMPO
-    if (horas > 0) {
-        if (horas >= 1 && horas < 2) {
-            mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música! Ou seja, mais que uma hora!! <br><br><br>
+        // VALIDAÇÃO DE ACORDO COM O TEMPO
+        if (horas > 0) {
+            if (horas >= 1 && horas < 2) {
+                mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música! Ou seja, mais que uma hora!! <br><br><br>
                 <img style="height: 300px; width:400px;" src="https://pbs.twimg.com/media/DipbsMmXUAAa7dm.jpg"><br><br>`;
-        } else if (horas >= 2 && horas < 3) {
-            mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música. Ou seja, mais que duas horas!! <br><br><br>
+            } else if (horas >= 2 && horas < 3) {
+                mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música. Ou seja, mais que duas horas!! <br><br><br>
                 <img style="height: 300px; width:400px;" src="https://i.pinimg.com/236x/68/67/82/68678220bfa2d118e031a162ffbdadfb.jpg"><br><br>`;
-        } else if (horas >= 3) {
-            mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música. Ou seja, mais que <b>3</b> horas!! <br><br><br>
+            } else if (horas >= 3) {
+                mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música. Ou seja, mais que <b>3</b> horas!! <br><br><br>
                 <img style="height: 300px; width:400px;" src="https://pbs.twimg.com/media/DkRsFjHXcAAlU8c.jpg"><br><br>`;
-        }
-    } else {
-        mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música. Ou seja, menos que 1 hora!! <br><br><br>
-            <img style="height: 300px; width:400px;" src="https://pbs.twimg.com/profile_images/1092085788089765889/ZBk1hNHM_200x200.jpg"><br><br>`;
-    }
-}
-
-            function voltar() {
-                document.getElementById('voltar').style.display = 'none';
-                document.getElementById('primeira').style.display = 'block';
             }
+        } else {
+            mensagem.innerHTML += `Você passou ${horas} horas e ${minutos} minutos escutando música. Ou seja, menos que 1 hora!! <br><br><br>
+            <img style="height: 300px; width:400px;" src="https://pbs.twimg.com/profile_images/1092085788089765889/ZBk1hNHM_200x200.jpg"><br><br>`;
+        }
+    }
 
-    </script>
+    function voltar() {
+        document.getElementById('voltar').style.display = 'none';
+        document.getElementById('primeira').style.display = 'block';
+    }
+
+    let controle_repeticao = [];
+
+    function mudar() {
+        let min = 0;
+        let max = 10;
+        let body = document.body;
+        let cores = ["#f9f5c0", "#dddddd", "#eeeccb", "#f5f5dc", "#eee8aa", "#fffdd0", "#fafad2", "#ffe4c4", "#ffebcd", "#ffe4b5", "#ffe4c4"];
+
+        if (controle_repeticao.length == cores.length) {
+            controle_repeticao = [];
+        }
+
+
+        let numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
+
+
+
+        body.style.background = cores[numeroAleatorio];
+
+        controle_repeticao.push(numeroAleatorio);
+
+        console.log(controle_repeticao)
+
+
+
+        console.log(numeroAleatorio);
+
+    }
+</script>
