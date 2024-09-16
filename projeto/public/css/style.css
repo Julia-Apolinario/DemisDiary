@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }  */
+
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden
+}
+
+.nav-lateral {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #921a40;
+    width: 50px;
+    height: 100vh;
+    position: fixed;
+}
+
+.nav-lateral i {
+    height: 90px;
+}
+
+.ladoesquerdo {
+    display: flex;
+    flex-direction: column;
+}
+
+.primeiraEsquerda {
+    margin-left: 70px;
+    margin-top: 10px;
+}
+
+.bemVindo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    width: 700px;
+    border-radius: 30px;
+    background-color: #d9abab;
+}
+
+.bemVindo img {
+    height: 150px;
+    margin-left: 40px;
+}
+.quadros{
+    margin-top: 30px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.informacoes{
+    display: flex;
+    height: 100px;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 200px;
+    margin-left: 20px;
+    /* box-shadow: 3px 3px 3px 3px #d9abab; */
+    box-shadow: 5px 5px 5px 5px rgba(0.5, 0.5, 0.5, 0.5);
+
+    
+}
+.segundaEsquerda {
+
+    display: flex;
+    flex-direction: row;
+
+}
+
+.ladoDireito{
+    display: flex;
+    flex-direction: column;
+    margin-left: 90px;
+}
+
+
+.ranking{    
+  margin-left: 90px;
+}
+
+

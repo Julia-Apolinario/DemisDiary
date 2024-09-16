@@ -1,59 +1,62 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-button{ 
+button {
     padding: 10px 20px;
     background-color: #000000;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 10px;
-    }
+}
+
 /* INÍCIO CSS HEADER */
 
-.headerindex{
+.headerindex {
     display: flex;
-    height:100vh;
+    height: 100vh;
     background-image: url(https://rare-gallery.com/uploads/posts/130561-demi-lovato-american-way-magazine-hd.jpg);
     background-size: cover;
     background-attachment: fixed;
 }
 
-.imagemLogo{
+.imagemLogo {
     display: flex;
     width: 200px;
-   
+
 }
 
-.menu{
+.menu {
     display: block;
-    margin-bottom:auto;
+    margin-bottom: auto;
     margin-top: 6px;
     margin-left: 412px;
 }
 
-nav ul{
+nav ul {
     display: flex;
     align-items: end;
 }
 
-nav a{
-    display:flex;
+nav a {
+    display: flex;
     padding: 15px;
     text-decoration: none;
     color: #000000;
 }
 
-nav .active a, nav a:hover{
+nav .active a,
+nav a:hover {
     background-color: #000000;
     color: #ffffff;
 }
 
-nav ul, nav li{
+nav ul,
+nav li {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -82,6 +85,7 @@ nav ul, nav li{
     ;
 
 }
+
 /* FIM CSS HEADER */
 
 
@@ -126,7 +130,7 @@ nav ul, nav li{
     width: 250px;
     height: 400px;
     background-color: white;
-    box-shadow:0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 30px;
     margin: 40px;
@@ -141,109 +145,139 @@ nav ul, nav li{
     font-size: 24px;
     color: #000000;
 }
+
 /* tirando os estilo padrão que listas do html tem */
 /* concluído 25/07/2024 */
-.card ul{
-    list-style: none; /* Remove o estilo */
+.card ul {
+    list-style: none;
+    /* Remove o estilo */
 
 }
+
 /* FIM CSS BANERS*/
 
+
+/* .container-slide{
+    width: 75vw;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.paginas-slide{
+    display: inline-block;
+    animation: anima 5s linear infinite;
+}
+
+.paginas-slide img{
+    width: 200px;
+}
+@keyframes anima{
+
+    0% {
+        transform: translatex(0);
+    }
+    100%{
+        transform:translatex(-50%);
+    }
+} */
 /* INÍCIO CSS CALCULADORA */
 
-    .calculadora{
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-        height: 450px;
-        width: 900px;
-        border: 3px solid black;
-        border-radius: 40px;
-        background-color: #C8C4C1;
+.calculadora {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 450px;
+    width: 900px;
+    background-color: #C8C4C1;
 
-    }
-    .calculadora p{
-        font-size: 20px;
-    }
+}
 
-    .tituloanimado {
-        font-family: monospace;
-        border-right: 4px solid;
-        white-space: nowrap;
-        width: 47ch;
-        font-size: 33px;
-        overflow: hidden;
-        animation: animaTexto 2s steps(46), animaMarcador 0.5s linear infinite;
-    }
-    
-    @keyframes animaMarcador {
-        50% {
-            border-right: transparent;
-        }
-    }
-    
-    @keyframes animaTexto {
-        0% {
-            width: 0;
-        }
-        100% {
-            width: 46ch;
-        }
-    }
-    
-    #voltar{
-        display: flex;
-        flex-direction: column;
-    }
-    #voltar button{
+.calculadora p {
+    font-size: 20px;
+}
 
-            padding: 10px 20px;
-            background-color: #000000;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 10px;
-            width: 90px;
-            margin-left: 250px;
-            
+.tituloanimado {
+    font-family: monospace;
+    border-right: 4px solid;
+    white-space: nowrap;
+    width: 47ch;
+    font-size: 33px;
+    overflow: hidden;
+    animation: animaTexto 2s steps(46), animaMarcador 0.5s linear infinite;
+}
+
+@keyframes animaMarcador {
+    50% {
+        border-right: transparent;
+    }
+}
+
+@keyframes animaTexto {
+    0% {
+        width: 0;
     }
 
-    input{
-        margin: 13px;
-        width: 200px;
-        padding: 9px 15px;
-        border: 2px solid #000000;
-        border-radius: 30px;
-        background: transparent;
-        color: rgb(0, 0, 0);
-    
+    100% {
+        width: 46ch;
     }
+}
+
+#voltar {
+    display: flex;
+    flex-direction: column;
+}
+
+#voltar button {
+
+    padding: 10px 20px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 90px;
+    margin-left: 250px;
+
+}
+
+input {
+    margin: 13px;
+    width: 200px;
+    padding: 9px 15px;
+    border: 2px solid #000000;
+    border-radius: 30px;
+    background: transparent;
+    color: rgb(0, 0, 0);
+
+}
+
 /* FIM CSS CALCULADORA */
-#social{
+#social {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
+
 .quadros {
     display: flex;
-    flex-direction: row; 
-  }
-  
-  .quadros .vermelho {
+    flex-direction: row;
+}
+
+.quadros .vermelho {
     background-color: #f43f5e;
-  }
-  
-  .quadros .azul {
+}
+
+.quadros .azul {
     background-color: #3b82f6;
-  }
-  
-  .quadros .verde {
+}
+
+.quadros .verde {
     background-color: #22c55e;
-  }
-  
-  .quadros .card {
+}
+
+.quadros .card {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -255,22 +289,23 @@ nav ul, nav li{
     cursor: pointer;
     transition: 400ms;
 
-  }
-  
-  .quadros .card p.tituloquadro {
-    font-size: 1em;  /* Define o tamanho da fonte igual ao do elemento pai */
+}
+
+.quadros .card p.tituloquadro {
+    font-size: 1em;
+    /* Define o tamanho da fonte igual ao do elemento pai */
     font-weight: 700;
-  }
-  
-  .quadros .card p.segundo-text {
+}
+
+.quadros .card p.segundo-text {
     font-size: .7em;
-  }
-  
-  .quadros .card:hover {
-    transform: scale(1.1, 1.1); 
+}
+
+.quadros .card:hover {
+    transform: scale(1.1, 1.1);
     /* animação que será realizada quando o mouse (hover) estiver em cima do botão */
-  }
-  
+}
+
 
 /* produtos */
 
@@ -287,22 +322,22 @@ nav ul, nav li{
     perspective: 1000px;
     box-shadow: 0 0 0 5px #ffffff80;
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  
-  /* A propriedade perspective em CSS é usada para aplicar uma perspectiva 3D a um elemento e seus filhos. Isso é útil quando você deseja criar efeitos tridimensionais em elementos 2D, como rotações e transformações que aparentam profundidade. */
-  
-  .foto img{
-   background-size: cover;
-   width: 250px;
+}
+
+/* A propriedade perspective em CSS é usada para aplicar uma perspectiva 3D a um elemento e seus filhos. Isso é útil quando você deseja criar efeitos tridimensionais em elementos 2D, como rotações e transformações que aparentam profundidade. */
+
+.foto img {
+    background-size: cover;
+    width: 250px;
     height: 250px;
 }
-  
-  .foto:hover {
+
+.foto:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
-  }
-  
-  .foto__conteudo {
+}
+
+.foto__conteudo {
     position: absolute;
     top: 0;
     left: 0;
@@ -314,39 +349,39 @@ nav ul, nav li{
     transform: rotateX(-90deg);
     transform-origin: bottom;
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  
-  .foto:hover .foto__conteudo {
-    transform: rotateX(0deg); 
+}
+
+.foto:hover .foto__conteudo {
+    transform: rotateX(0deg);
     /* A função CSS rotateX() define uma transformação que gira um elemento em torno do eixo x (horizontal) sem deformá-lo. */
-   }
-   
-  .foto__titulo {
+}
+
+.foto__titulo {
     margin: 0;
     font-size: 24px;
     color: #333;
     font-weight: 700;
-  }
+}
 
-  
-  .foto__descricao {
+
+.foto__descricao {
     margin: 10px 0 0;
     font-size: 14px;
     color: #777;
     line-height: 1.4;
-  }
+}
 
-  .produto{
+.produto {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
-   #tituloalbum{
+#tituloalbum {
     margin-top: 90px;
     display: flex;
     justify-content: center;
-  }
+}
 
 /* INÍCIO CSS FOOTER */
 
@@ -369,6 +404,7 @@ nav ul, nav li{
     flex: 1;
     margin: 20px;
 }
+
 .footer-titul {
     font-size: 20px;
     margin-bottom: 20px;
@@ -436,35 +472,36 @@ nav ul, nav li{
 /* CSS CADASTRO*/
 
 /* BODY */
-.headercadastro{
+.headercadastro {
     display: flex;
     height: 60px;
 }
 
-#Bodycadastro{
+#Bodycadastro {
     background-size: cover;
     overflow: hidden;
     background-repeat: no-repeat;
     background-image: url(img/fotofundo.jpg);
 }
 
-.cadastro{
+.cadastro {
     display: flex;
     align-items: end;
     justify-content: end;
     margin-bottom: 130px;
     margin-left: 800px;
-    
+
 }
 
-.containercadastro{
+.containercadastro {
     width: 990px;
     display: flex;
-    justify-content: space-between;;
+    justify-content: space-between;
+    ;
 
 }
 
-.formulario{
+.formulario {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -473,34 +510,39 @@ nav ul, nav li{
 
 .cadastro .card {
     justify-content: flex-end;
-    border: 1px solid #000000; /* Adiciona uma borda sólida cinza ao redor do cartão */
-    border-radius: 25px; /* Adiciona cantos arredondados */
-    padding: 20px; /* Adiciona espaço interno ao redor do conteúdo */
-    margin: 10px; /* Adiciona margem ao redor do cartão */
+    border: 1px solid #000000;
+    /* Adiciona uma borda sólida cinza ao redor do cartão */
+    border-radius: 25px;
+    /* Adiciona cantos arredondados */
+    padding: 20px;
+    /* Adiciona espaço interno ao redor do conteúdo */
+    margin: 10px;
+    /* Adiciona margem ao redor do cartão */
     margin-right: 90px;
     margin-top: 10px;
     height: 615px;
     width: 350px;
+    background-color: transparent;
 }
 
-.cadastro .foto h2{
+.cadastro .foto h2 {
     display: flex;
     justify-content: center;
     color: #000000;
-  
+
 }
 
-.campo{
+.campo {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 input::placeholder {
-    color: #000000;  
+    color: #000000;
 }
 
-.comparacao input{
+.comparacao input {
     margin: 13px;
     width: 200px;
     padding: 9px 15px;
@@ -511,7 +553,7 @@ input::placeholder {
 
 }
 
-.campo input{
+.campo input {
     margin: 13px;
     width: 200px;
     padding: 9px 15px;
@@ -521,6 +563,7 @@ input::placeholder {
     color: rgb(0, 0, 0);
 
 }
+
 .campo select {
     margin: 13px;
     width: 200px;
@@ -531,37 +574,37 @@ input::placeholder {
     color: rgb(0, 0, 0);
 }
 
-.formulario button{ 
-padding: 10px 20px;
-background-color: #000000;
-color: rgb(255, 255, 255);
-border: none;
-cursor: pointer;
-border-radius: 10px;
+.formulario button {
+    padding: 10px 20px;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
 }
-        
+
 .loading-div {
     width: 50px;
     display: none;
-  }
-  
-  .loading-div img {
+}
+
+.loading-div img {
     height: 50px;
     width: 50px;
-  }
-  
-  #div_erros_login {
+}
+
+#div_erros_login {
     display: none;
-  }
-  
-  .alerta_erro{
+}
+
+.alerta_erro {
     display: flex;
     justify-content: flex-start;
-  }
-  
-  .card_erro {
+}
+
+.card_erro {
     display: none;
-    background-color:transparent;
+    background-color: transparent;
     color: black;
     width: 220px;
     justify-content: start;
@@ -570,32 +613,33 @@ border-radius: 10px;
     border: #2e121d 3px solid;
     padding: 10px;
     margin-bottom: 400px;
-  }
-  
-  .card_erro #mensagem_erro{
+}
+
+.card_erro #mensagem_erro {
     font-weight: 500;
     font-size: 20px;
-  }
-  /* FIM CSS CADASTRO*/
+}
+
+/* FIM CSS CADASTRO*/
 
 
 /* //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-  
+
 /* INICIO CSS LOGIN*/
-  #Bodylogin{
+#Bodylogin {
     background-image: url(https://cdn.wallpapersafari.com/62/87/4zwd27.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
 }
 
-.login{
+.login {
     display: flex;
     align-items: center;
     justify-content: start;
     margin-bottom: 130px;
     margin-left: 250px;
-    
+
 }
 
 .login .base {
@@ -609,31 +653,30 @@ border-radius: 10px;
     width: 350px;
 }
 
-.login .base h2{
+.login .base h2 {
     display: flex;
     justify-content: center;
     color: #000000;
-  
+
 }
 
 /* INICIO CSS QUIZ*/
 #bodyQuiz {
     margin: 0;
     padding: 0;
-    background-image: url(https://images3.alphacoders.com/106/1065118.jpg);
+    background-image: url(https://getwallpapers.com/wallpaper/full/b/a/1/899990-download-demi-lovato-background-2271x1277-image.jpg);
     background-size: cover;
-    background-color: rgb(197, 78, 181);
     overflow: hidden;
     background-repeat: no-repeat;
     background-attachment: fixed;
- 
+
 }
 
-  .containerquiz {
-            width: 990px;
-            display: flex;
-            justify-content: space-between;
-        }
+.containerquiz {
+    width: 990px;
+    display: flex;
+    justify-content: space-between;
+}
 
 a {
     text-decoration: none;
@@ -660,9 +703,9 @@ a {
 }
 
 .jogo {
-    background-color:transparent;
+    background-color: transparent;
     border: 1px solid black;
-    margin-right: 600px;
+    margin-right: 900px;
     width: 50%;
     height: 90%;
     border-radius: 20px;
@@ -681,7 +724,7 @@ a {
     font-weight: 500;
 }
 
-.containerperguntas{
+.containerperguntas {
     display: flex;
     width: 90%;
     height: 20%;
@@ -702,7 +745,7 @@ a {
 }
 
 .botao {
-    
+
     display: flex;
     background-color: transparent;
     width: 40%;
@@ -755,6 +798,7 @@ a {
     background-color: rgb(189, 34, 34);
     transition: background-color 300ms linear
 }
+
 .correto {
     background-color: rgb(32, 209, 41);
     transition: background-color 300ms linear;

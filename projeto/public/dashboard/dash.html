@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demi's Diary | Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- <link rel="stylesheet" href="../css/dashboards.css"> -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body onload="obterDadosGrafico(),maximoMinimo(),ranking(),ultimaRodada(),ultimoMes(),ultimaPont()">
+  <div class="dashboard" id="dash">
+    <div class="nav-lateral">
+      <a href="dash.html"><i class='bx bxs-home-heart' style="color: #ffffff;font-size: 40px;margin-top: 10px;"></i></a>
+      <a href="quiz.html"><i class='bx bx-question-mark' style='color:#ffffff;font-size: 40px;margin-top: 30px;'></i></a>
+    
+      <!-- <a href=""><i class='bx bx-user-circle' style='color:#ffffff;font-size: 40px;margin-top: 30px;'></i></a> -->
+      <a href="../index.html"><i class='bx bx-log-out' style='color:#ffffff;font-size: 40px;margin-top: 30px;'></i></a>
+    </div>
+    <section class="ladoesquerdo">
+      <div class="primeiraEsquerda">
+        <div class="bemVindo">
+          <h1>Bem-Vindo,<b><span style="color: purple;" id="b_usuario">Usuário</span></b>!</h1>
+          <img src="../img/logo.png" alt="">
+        </div>
+        <div>
+          <div class="quadros">
+            <div class="informacoes">
+              <b> Última Dia:</b>
+              <h3><span style="color: purple;" id="rodada2"><br>Ainda Não Fez</span></h3>
+            </div>
+            <div class="informacoes">
+              <b> Porcentagem de Acertos:</b>
+              <h3><span style="color: purple;" id="porcentagem"><br>Ainda Não Fez</span></h3>
+            </div>
+            <div class="informacoes">
+              <b>Rodadas nesse mês</b>
+              <h3><span style="color: purple;" id="mes"><br>Ainda Não Fez</span> </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="segundaEsquerda">
+        <div class="ranking">
+          <canvas id="graficoRanking" width="600" height="400" style="margin-top: 20px;"></canvas>
+        </div>
+       
+      </div>
+    </section>
+    <section class="ladoDireito">
+       <div class="maiornota">
+          <div class="max"><canvas id="Grafico2" width="400" height="200"></canvas>
+          </div>
+        </div>
+        <div class="historico"></div>
+          <canvas id="meuGrafico" width="600" height="400"></canvas>
+        </div>
+    </section>
+
+  </div>
+</body>
+
+</html>
+
+<script >
+
+  document.getElementById('b_usuario').innerHTML = sessionStorage.NOME_USUARIO;
+  // document.getElementById('b_usuario2').innerHTML = sessionStorage.NOME_USUARIO;
+  let proximaAtualizacao;
+
+  var fk_usuario = sessionStorage.ID_USUARIO;
+  console.log(`${fk_usuario}`);
+  
+
+
+  // ALTERAÇÃO FEITA DIA 20/06/2024 (CONCLUÍDO 13:30) 
+  // Já mandei
+  function obterDadosGrafico() {
+
+    // BUSCA OS DADOS DO BANCO
+    fetch(`/medidas/ultimas/${fk_usuario}`, { cache: 'no-store' })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        var ctx = document.getElementById('meuGrafico').getContext('2d');
+        var acertos = data.map(item => item.nota);
+
+        // VETOR QUE VAI ARMAZENAR OS DADOS 
+        var labels = [];
+        // LAÇO DE REPETIÇÃO
+        for (let index = 0; index < data.length; index++) {
+          labels.push(`Tentativa ${index + 1}`); // QUANDO O USUÁRIO FAZER O QUIZ, O GRÁFICO VAI ATUALIZAR E ADICIONAR AS TENTATIVAS ( TENTATIVA 1, TENTATIVA2, ETC)
+        }
+
+        var chartData = {
+          labels: labels,
+          datasets: [{
+            label: 'Acertos',
+            data: acertos,
+            backgroundColor: 'rgba(217,171,171)', 
+            borderColor: 'rgba(146,26,64)',
+           
+          }]
+        };
+
+        var config = {
+          type: 'bar',
+          data: chartData,
+          options: {
+            // indexAxis: 'y',
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 10
+              }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: 'Histórico de Acertos',
+                font: {
+                  size: 24
+                },
+                color: '#000000'
+              }
+                
+              }
+            }
+          }
+      
+
+        new Chart(ctx, config);
+      })
+      .catch(error => console.error('Falha na captura de acertos', error));
+  }
+
+  // ALTERAÇÃO FEITA DIA 24/06/2024 (CONCLUÍDO 20:40)
+  // já mandei
+  function maximoMinimo()  {
+    fetch(`/medidas/maximoMinimo/${fk_usuario}`, { cache: 'no-store' })
+      .then(response => response.json())
+      .then(data => {
+
+        // VETOR QUE VAI ARMAZENAR OS DADOS
+        var MaiorNota = [];
+        var MenorNota = [];
+        var labels = [];
+
+        for (let i = 0; i < data.length; i++) {
+          // ADICIONANDO OS DADOS NOS VETORES
+          MaiorNota.push(data[i].MaiorNota);
+          MenorNota.push(data[i].MenorNota);
+          labels.push(`Maior/Menor nota`);
+        }
+
+
+        // CONFIGURANDO O GRÁFICO
+        var ctx2 = document.getElementById('Grafico2').getContext('2d');
+
+        var chartData = {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Maior Nota',
+              data: MaiorNota,
+              backgroundColor: 'rgba(146, 26, 64)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+            },
+            {
+              label: 'Menor Nota',
+              data: MenorNota,
+              backgroundColor: 'rgba(199, 91, 122)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 1
+            }
+          ]
+        };
+
+        var config = {
+          type: 'bar',
+          data: chartData,
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 10
+              }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: 'Maior/Menor Nota',
+                font: {
+                  size: 24
+                },
+                color: '#000000'
+              }
+            }
+          }
+        };
+
+       
+
+        new Chart(ctx2, config);
+        console.log(data);
+      })
+      .catch(error => console.error('Falha na captura de acertos(max,min)', error));
+  }
+
+  // ALTERAÇÃO FEITA DIA 24/06/2024 (CONCLUÍDO 21:28)
+  function ultimoMes() {
+    fetch(`/medidas/ultimoMes/${fk_usuario}`, { cache: 'no-store' })
+      .then(response => response.json())
+      .then(data => {
+        if (data.length > 0) {
+          var TotalPontuacao = data[data.length - 1].total; // Acessa o último elemento do vetor
+          console.log(data);
+          document.getElementById('mes').innerHTML = TotalPontuacao;
+        } else {
+          console.log('Nenhum dado encontrado');
+          document.getElementById('mes').innerHTML = 'Sem dados';
+        }
+      })
+      .catch(error => console.error('Falha na captura de acertos(mes)', error));
+  }
+
+
+
+  // ALTERAÇÃO FEITA DIA 24/06/2024 (CONCLUÍDO AS 12:43)
+  // já mandei
+  function ultimaPont() {
+    fetch(`/medidas/ultimaPont/${fk_usuario}`, { cache: 'no-store' })
+      .then(response => response.json())
+      .then(data => {
+
+        // ENTRANDO NO VETOR PARA PEGAR O DADO ARMAZENADO, COMO SÓ PUXEI UM NO SELECT, A POSIÇÃO É 0.
+        var porcentagemGeral = data[0].PorcentagemAcertos;
+        console.log(data);
+   
+
+                // ADICIONANDO O TEXTO NO CARD COM O ID 'porcentagem'
+                document.getElementById('porcentagem').innerHTML = `${porcentagemGeral}%`;
+      })
+      .catch(error => console.error('Falha na captura de acertos (porcentagem)', error));
+  }
+
+
+  // AJUSTES FEITOS NO DIA 21/06/2024 (CONCLUÍDO AS 13:30) revisado dia 04/07/2024
+  function ranking() {
+  fetch(`/album/ranking`, { cache: 'no-store' })
+    .then(response => response.json())
+    .then(data => {
+      // Inicializar um array para os nomes dos álbuns e outro para os valores (se necessário)
+      var nomes = [];
+      var valores = []; // Se você tiver valores associados aos álbuns, caso contrário remova isso.
+        // Adicionar os dados no array usando push
+        for (let i = 0; i < 3; i++) {
+          nomes.push(data[i].nome);
+          valores.push(data[i].NumeroUsuarios)// Exemplo de valores aleatórios
+        }
+
+        // Criar o gráfico de barras horizontal
+        var ctx = document.getElementById('graficoRanking').getContext('2d');
+        
+        var chartData = {
+          labels: nomes, // Nomes dos álbuns como rótulos
+          datasets: [{
+            label: 'Ranking de Álbuns',
+            data: valores, // Valores aleatórios ou reais
+            backgroundColor: 'rgba(244,217,208)',
+            borderColor: 'rgba(244,217,208)',
+            borderWidth: 1
+          }]
+        };
+
+        var config = {
+          type: 'bar',
+          data: chartData,
+          options: {
+            indexAxis: 'y',  // Isso faz o gráfico de barras ser horizontal
+            scales: {
+              x: {  // Eixo X representa os valores
+                beginAtZero: true,
+                max: 10
+              }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: 'Top 3 Álbuns',
+                font: {
+                  size: 24
+                },
+                color: '#000000'
+              }
+            }
+          }
+        };
+
+        // Criar o gráfico
+        new Chart(ctx, config);
+    
+    })
+    .catch(error => console.error('Falha na captura do ranking', error));
+}
+
+
+
+  function ultimaRodada() {
+    fetch(`/medidas/ultimaRodada/${fk_usuario}`, { cache: 'no-store' })
+      .then(response => response.json())
+      .then(data => {
+        var ultimarodadaquiz = data[0].ultima_rodada; // Supondo que a API retorna um objeto com a propriedade 'ultima_rodada'
+        console.log(data);
+        document.getElementById('rodada2').innerHTML = ultimarodadaquiz;
+      })
+      .catch(error => console.error('Falha na captura de rodada', error));
+  }
+
+
+</script>

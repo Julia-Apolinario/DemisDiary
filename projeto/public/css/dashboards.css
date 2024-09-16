@@ -1,9 +1,12 @@
-body{
-  background-image: url(https://wallpapers.com/images/hd/demi-lovato-side-view-bkn6959qhiei954m.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
+/* body{
+background-color: #b4b4b4;
+background-image: url(https://wallpapers.com/images/hd/demi-lovato-side-view-bkn6959qhiei954m.jpg);
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+} */
 
  canvas {
   width: 100% !important;
@@ -26,9 +29,9 @@ body{
   flex-direction: column;
   width: 200px;
   margin-top: 50px;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 5px 5px 5px 5px rgba(0.5, 0.5, 0.5, 0.5);
-  background-color:#EFF8FF;
+  background-color:#f4d9d0;
 }
 
 /* CSS GRAFICOS */
@@ -47,7 +50,7 @@ body{
   justify-content: space-evenly;
 }
 .geral{
-  border-radius: 35px;
+  border-radius: 10px;
   display: flex;
   height: 400px;
   text-align: center;
@@ -59,8 +62,8 @@ body{
 
 }
 
-.historico {
-  border-radius: 35px;
+/* .historico {
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   height: 400px;
@@ -75,13 +78,13 @@ body{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border-radius: 40px;
+  border-radius: 10px;
   text-align: center;
   height: 400px;
   width: 600px;
   background-color:#EFF8FF;
   box-shadow: 5px 5px 5px 5px rgba(0.5, 0.5, 0.5, 0.5);
-}
+} */
 
 /* INICIO CSS RANKING */
 .ranking{
@@ -89,7 +92,7 @@ body{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border-radius: 40px;
+  border-radius: 10px;
   text-align: center;
   height: 400px;
   width: 600px;

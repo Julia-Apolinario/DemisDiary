@@ -147,6 +147,6 @@ function cadastrarNota() {
 
     // Redireciona para a dashboard após 3 segundos
     setTimeout(() => {
-        window.location = "dashboard.html";
+        window.location = "dash.html";
     }, 3000);
 }
