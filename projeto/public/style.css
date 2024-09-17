@@ -1,8 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
 }
 
 button {
@@ -16,10 +24,21 @@ button {
 
 /* INÍCIO CSS HEADER */
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.index {
+    width: 100%;
+    height: 100vh;
+    background-color: #d9acc4;
+}
+
 .headerindex {
     display: flex;
     height: 100vh;
-    background-image: url(https://rare-gallery.com/uploads/posts/130561-demi-lovato-american-way-magazine-hd.jpg);
+    background-image: url(https://assets.teenvogue.com/photos/66db13aec1a945dad273e02f/16:9/w_2560%2Cc_limit/HEADER_DemiLovato_Sept2024.jpg);
     background-size: cover;
     background-attachment: fixed;
 }
@@ -62,21 +81,11 @@ nav li {
     padding: 0;
 }
 
-.banner {
-    display: flex;
-    width: 380px;
-    padding: 0px;
-    align-items: center;
-    justify-content: center;
+.descer {
+    margin-left: 86px;
+    margin-top: 625px;
 }
 
-.banner p {
-    font-size: 30px;
-    margin: 18px 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
 
 .containerlogin {
     width: 990px;
@@ -90,42 +99,68 @@ nav li {
 
 
 /* INÍCIO CSS DOS BANERS */
-
-.introducao .container {
+.primeira {
+    width: 100%;
+    height: 100vh;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    background-attachment: fixed;
+    flex-direction: row;
 }
 
-.introducao .introducaotext {
-    width: 50%;
-    padding: 0 40px;
+.primeira img {
+    width: 400px;
+    border-radius: 20px;
 }
 
-.introducao .introducaotext h3 {
-    font-size: 56px;
-    color: #000000;
+.introducao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    margin-left: 240px;
 }
 
-.introducao .introducao p {
-    margin: 5px 0 10px 0;
+.introducao h1 {
+    color: #bc1349;
+    font-size: 70px;
+    font-family: "Open Sans", sans-serif;
 }
 
-.introducao .introducaotext a {
-    width: 150px;
-    text-align: center;
+.introducao p {
+    font-size: 20px;
+    font-family: "League Spartan", sans-serif;
 }
 
-.divulgacao {
-    padding: 40px;
+.segunda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: #f5cde3;
 }
 
-.divulgacao .container {
-    justify-content: space-evenly;
+.segunda h1 {
+    color: #bc1349;
+    font-size: 70px;
+    font-family: "Open Sans", sans-serif;
+}
+
+.valores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
 .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     text-align: center;
     width: 250px;
     height: 400px;
@@ -138,7 +173,6 @@ nav li {
 
 .card img {
     width: 200px;
-    height: 200px;
 }
 
 .card h4 {
@@ -146,81 +180,31 @@ nav li {
     color: #000000;
 }
 
-/* tirando os estilo padrão que listas do html tem */
-/* concluído 25/07/2024 */
-.card ul {
-    list-style: none;
-    /* Remove o estilo */
 
-}
-
-/* FIM CSS BANERS*/
-
-
-/* .container-slide{
-    width: 75vw;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-.paginas-slide{
-    display: inline-block;
-    animation: anima 5s linear infinite;
-}
-
-.paginas-slide img{
-    width: 200px;
-}
-@keyframes anima{
-
-    0% {
-        transform: translatex(0);
-    }
-    100%{
-        transform:translatex(-50%);
-    }
-} */
-/* INÍCIO CSS CALCULADORA */
-
-.calculadora {
+.terceira {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    height: 450px;
-    width: 900px;
-    background-color: #C8C4C1;
-
+    height: 100vh;
+    width: 100%;
 }
 
-.calculadora p {
-    font-size: 20px;
+#primeira{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.tituloanimado {
+.terceira p {
+    font-size: 40px;
+}
+
+.titulo {
+    color: #bc1349;
+    font-size: 50px;
     font-family: monospace;
-    border-right: 4px solid;
-    white-space: nowrap;
-    width: 47ch;
-    font-size: 33px;
-    overflow: hidden;
-    animation: animaTexto 2s steps(46), animaMarcador 0.5s linear infinite;
-}
-
-@keyframes animaMarcador {
-    50% {
-        border-right: transparent;
-    }
-}
-
-@keyframes animaTexto {
-    0% {
-        width: 0;
-    }
-
-    100% {
-        width: 46ch;
-    }
 }
 
 #voltar {
@@ -252,63 +236,11 @@ input {
 
 }
 
-/* FIM CSS CALCULADORA */
-#social {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+.quarta{
+    background-color: #d9acc4;
+    height: 130vh;
+    width: 100%;
 }
-
-.quadros {
-    display: flex;
-    flex-direction: row;
-}
-
-.quadros .vermelho {
-    background-color: #f43f5e;
-}
-
-.quadros .azul {
-    background-color: #3b82f6;
-}
-
-.quadros .verde {
-    background-color: #22c55e;
-}
-
-.quadros .card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    height: 100px;
-    width: 250px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 400ms;
-
-}
-
-.quadros .card p.tituloquadro {
-    font-size: 1em;
-    /* Define o tamanho da fonte igual ao do elemento pai */
-    font-weight: 700;
-}
-
-.quadros .card p.segundo-text {
-    font-size: .7em;
-}
-
-.quadros .card:hover {
-    transform: scale(1.1, 1.1);
-    /* animação que será realizada quando o mouse (hover) estiver em cima do botão */
-}
-
-
-/* produtos */
-
 .foto {
     position: relative;
     width: 250px;
@@ -378,10 +310,65 @@ input {
 }
 
 #tituloalbum {
-    margin-top: 90px;
+    margin-left: 150px;
+    color: #bc1349;
+    font-size: 70px;
+    font-family: "Open Sans", sans-serif;
+}
+
+#social {
     display: flex;
     justify-content: center;
+    align-items: center;
+    background-color: #d9acc4;
 }
+
+.quadros {
+    display: flex;
+    flex-direction: row;
+}
+
+.quadros .vermelho {
+    background-color: #f43f5e;
+}
+
+.quadros .azul {
+    background-color: #3b82f6;
+}
+
+.quadros .verde {
+    background-color: #22c55e;
+}
+
+.quadros .card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100px;
+    width: 250px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 400ms;
+
+}
+
+.quadros .card p.tituloquadro {
+    font-size: 1em;
+    /* Define o tamanho da fonte igual ao do elemento pai */
+    font-weight: 700;
+}
+
+.quadros .card p.segundo-text {
+    font-size: .7em;
+}
+
+.quadros .card:hover {
+    transform: scale(1.1, 1.1);
+    /* animação que será realizada quando o mouse (hover) estiver em cima do botão */
+}
+
 
 /* INÍCIO CSS FOOTER */
 
