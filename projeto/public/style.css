@@ -169,6 +169,7 @@ nav li {
     border-radius: 10px;
     padding: 30px;
     margin: 40px;
+    
 }
 
 .card img {
@@ -310,7 +311,7 @@ input {
 }
 
 #tituloalbum {
-    margin-left: 150px;
+    margin-left: 520px;
     color: #bc1349;
     font-size: 70px;
     font-family: "Open Sans", sans-serif;
@@ -498,13 +499,9 @@ input {
 .cadastro .card {
     justify-content: flex-end;
     border: 1px solid #000000;
-    /* Adiciona uma borda sólida cinza ao redor do cartão */
     border-radius: 25px;
-    /* Adiciona cantos arredondados */
     padding: 20px;
-    /* Adiciona espaço interno ao redor do conteúdo */
     margin: 10px;
-    /* Adiciona margem ao redor do cartão */
     margin-right: 90px;
     margin-top: 10px;
     height: 615px;

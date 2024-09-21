@@ -9,7 +9,7 @@ function buscarUltimasMedidas(fk_usuario) {
     `;
 
     // Log para indicar que a consulta está sendo executada
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);   
     // Executa o comando SQL e retorna o resultado
     return database.executar(instrucaoSql);
 }
