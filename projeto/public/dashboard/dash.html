@@ -28,7 +28,7 @@
         <div>
           <div class="quadros">
             <div class="informacoes">
-              <b> Última Dia:</b>
+              <b> Última Rodada:</b>
               <h3><span style="color: purple;" id="rodada2"><br>Ainda Não Fez</span></h3>
             </div>
             <div class="informacoes">
@@ -253,13 +253,13 @@
   fetch(`/album/ranking`, { cache: 'no-store' })
     .then(response => response.json())
     .then(data => {
-      // Inicializar um array para os nomes dos álbuns e outro para os valores (se necessário)
+      // Inicializar um array para os nomes dos álbuns e outro para os valores 
       var nomes = [];
-      var valores = []; // Se você tiver valores associados aos álbuns, caso contrário remova isso.
+      var valores = []; 
         // Adicionar os dados no array usando push
         for (let i = 0; i < 3; i++) {
           nomes.push(data[i].nome);
-          valores.push(data[i].NumeroUsuarios)// Exemplo de valores aleatórios
+          valores.push(data[i].NumeroUsuarios)
         }
 
         // Criar o gráfico de barras horizontal
@@ -269,7 +269,7 @@
           labels: nomes, // Nomes dos álbuns como rótulos
           datasets: [{
             label: 'Ranking de Álbuns',
-            data: valores, // Valores aleatórios ou reais
+            data: valores, 
             backgroundColor: 'rgba(199,91,122)',
             borderColor: 'rgba(199,91,122)',
             borderWidth: 1
@@ -313,7 +313,7 @@
     fetch(`/medidas/ultimaRodada/${fk_usuario}`, { cache: 'no-store' })
       .then(response => response.json())
       .then(data => {
-        var ultimarodadaquiz = data[0].ultima_rodada; // Supondo que a API retorna um objeto com a propriedade 'ultima_rodada'
+        var ultimarodadaquiz = data[0].ultima_rodada; 
         console.log(data);
         document.getElementById('rodada2').innerHTML = ultimarodadaquiz;
       })
